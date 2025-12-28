@@ -3,7 +3,6 @@ import { Users, Feather, Heart, Music } from "lucide-react";
 
 import marklorence from "../assets/worshipteam/marklorence.png";
 import zelyncuenca from "../assets/worshipteam/zelyn.png";
-import ruel from "../assets/worshipteam/pastor.jpg";
 
 const primaryColor = "#1a531a"; // Deep Forest Green
 const accentColor = "#6aa84f"; // Bright Lime Green
