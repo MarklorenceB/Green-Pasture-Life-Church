@@ -1,8 +1,8 @@
 import React from "react";
 import { Users, Feather, Heart, Music } from "lucide-react";
 
-import marklorence from "../assets/worshipteam/marklorence.png";
-import zelyncuenca from "../assets/worshipteam/zelyn.png";
+import marklorence from "/worshipteam/marklorence.png";
+import zelyncuenca from "/worshipteam/zelyn.png";
 
 const primaryColor = "#1a531a"; // Deep Forest Green
 const accentColor = "#6aa84f"; // Bright Lime Green
