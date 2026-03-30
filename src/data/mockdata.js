@@ -2,10 +2,13 @@
 
 export const churchInfo = {
   name: "Green Pasture Life Church",
-  tagline: "Loving God, Loving People, Serving the World.",
-  email: "sample@gmail.com",
-  phone: "(555) 123-4567",
-  address: "Bgry, Santisimo Rosario, City of San Pablo, Laguna Philippines",
+  tagline: "The Lord is my shepherd, I lack nothing.",
+  email: "rueldelmonte4@gmail.com",
+  phone: "049-557-5188",
+  phone2: "0927-938-4441",
+  address:
+    "Sitio Ilaya, Barangay Santisimo Rosario, San Pablo City, Laguna 4000, Philippines",
+  officeHours: "Tuesday – Friday: 9:00 AM – 4:00 PM",
   socials: {
     facebook: "https://facebook.com",
     youtube: "https://youtube.com",
@@ -18,14 +21,13 @@ export const ministries = [
     id: 1,
     title: "Men's Ministry",
     description:
-      "Empowering men to lead their families and serve the community through faith and brotherhood.",
+      "Empowering men to grow in their relationship with God, lead their families with integrity, and serve the church and community through faith, discipleship, and brotherhood.",
     image:
       "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&q=80&w=500",
-    // ⬇️ REQUIRED FIELDS FOR DYNAMIC PAGE ⬇️
     fullContent:
-      "The Men's Ministry hosts monthly breakfast meetings focusing on spiritual leadership, accountability, and mentorship. Our goal is to equip men to be strong pillars in their homes, church, and marketplace. We also organize annual service projects and retreats.",
-    coordinator: "Pastor Ruel",
-    meetingTime: "Every 3rd Saturday at 8:00 AM",
+      "The Men's Ministry helps men grow in spiritual leadership, accountability, and mentorship. Our desire is to equip men to become strong pillars in their homes, church, and workplace.\n\nWe also hold fellowship gatherings, service projects, and retreats that strengthen faith, build brotherhood, and encourage men to live Christ-centered lives.",
+    coordinator: "Ptr. Federico Almario",
+    meetingTime: "Every Thursday (twice a month) – 6:00 PM",
   },
   {
     id: 2,
@@ -34,77 +36,82 @@ export const ministries = [
       "A sisterhood of grace, gathering for bible study, prayer, and mutual encouragement.",
     image:
       "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=500",
-    // ⬇️ REQUIRED FIELDS FOR DYNAMIC PAGE ⬇️
     fullContent:
       "The Women of Grace meet weekly for Bible study and maintain an active prayer chain. We host an annual retreat dedicated to renewal and fellowship. Our focus is to build deep, meaningful relationships centered on Christ.",
-    coordinator: "Sister Jane Smith",
-    meetingTime: "Tuesday evenings at 7:00 PM",
+    coordinator: "Lorelie Mission",
+    meetingTime: "Friday at 5:00 PM (Weekly)",
   },
   {
     id: 3,
-    title: "Youth",
+    title: "Youth Ministry",
     description:
-      "Raising the next generation with fun, engaging, and biblical teaching for all ages.",
+      "Guiding the next generation to know Christ personally, grow spiritually, and live out their faith with confidence.",
     image:
       "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&q=80&w=500",
-    // ⬇️ REQUIRED FIELDS FOR DYNAMIC PAGE ⬇️
     fullContent:
-      "We offer age-appropriate worship and activities every Sunday. Our Youth Group meets weekly for fun, fellowship, and tackling tough questions about faith in the modern world. Safety and biblical truth are our top priorities.",
-    coordinator: "Mark & Sarah Wilson",
+      "We offer age-appropriate worship and activities designed to help young people grow in their relationship with Christ. Our Youth Gathering meets twice a month on Friday, creating a safe and welcoming environment for fun, fellowship, and learning biblical truth while addressing real-life questions about faith in today's world.\n\nSafety, discipleship, and strong biblical foundation are our top priorities. We welcome all new members! Our ministry is driven by passion and a desire to serve God and others.\n\nPlease contact the coordinator for details on how to get involved.",
+    coordinator: "Nikka Ulan and Rachelle Faye del Monte",
     meetingTime: "Sunday (during service) & Friday at 6:30 PM",
   },
   {
     id: 4,
     title: "Worship Team",
     description:
-      "Leading the congregation into the presence of God through contemporary and traditional music.",
+      "Leading the congregation into a life-changing encounter with God through heartfelt worship, blending contemporary and traditional music that glorifies His name.",
     image:
       "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&q=80&w=500",
-    // ⬇️ REQUIRED FIELDS FOR DYNAMIC PAGE ⬇️
     fullContent:
-      "Our Worship team provides music for all services, striving for excellence and reverence. If you play an instrument or sing, we invite you to audition. Rehearsals focus on musical skill and spiritual preparation.",
-    coordinator: "David Chung",
-    meetingTime: "Thursday rehearsals at 7:30 PM",
+      "The Worship Team is committed to leading the church into a meaningful encounter with God through music that honors Him. Through both contemporary and traditional songs, the team helps create an atmosphere of worship that prepares hearts to receive God's Word.\n\nRehearsals focus on developing musical skills as well as spiritual preparation, unity, and sensitivity to the leading of the Holy Spirit.\n\nIf you sing or play an instrument, we warmly invite you to audition and become part of a team passionate about serving God and His people.\n\nWe welcome all new members! Our ministry is driven by passion and a desire to serve. Please contact the coordinator for details on how to get involved.",
+    coordinator: "Mar Louie Hernandez",
+    meetingTime: "Saturday – 2:00 PM (Rehearsal, Weekly)",
   },
   {
     id: 5,
-    title: "Outreach",
+    title: "Outreach Ministry",
     description:
-      "Serving the homeless, supporting missions, and bringing light to our local community.",
+      "Serving the community through acts of love — feeding programs, meeting practical needs, establishing house churches, supporting missions, and bringing the light of Christ to our local communities.",
     image:
       "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=500",
-    // ⬇️ REQUIRED FIELDS FOR DYNAMIC PAGE ⬇️
     fullContent:
-      "The Outreach Ministry coordinates efforts both locally and globally. We run a weekly food bank, participate in city clean-up days, and support missionaries overseas. Join us as we demonstrate God's love through practical action.",
-    coordinator: "The Outreach Team",
-    meetingTime: "Monthly planning meeting, 1st Tuesday at 6:00 PM",
+      "The Outreach Ministry is committed to demonstrating God's love through practical service and evangelism. Through feeding programs, community support, and mission activities, we reach out to those in need and share the Gospel of Jesus Christ.\n\nIn line with our mission to love and care for people so they may experience God's salvation through Jesus Christ, we aim to bring hope, compassion, and spiritual transformation in our community and beyond.\n\nOur ministry helps establish house churches, supports mission work, and organizes evangelistic gatherings and crusades to bring more people into a growing relationship with Christ.\n\nWe welcome all new members! Our ministry is driven by compassion, faith, and a desire to serve God by serving others.\n\nPlease contact the coordinator for details on how to get involved.",
+    coordinator: "Ruel Del Monte / Paul John Dorado",
+    meetingTime: "2nd Sunday of the Month – 11:00 AM (Planning Meeting)",
   },
-
   {
     id: 6,
-    title: "Kids",
+    title: "Connect Ministry",
     description:
-      "Serving the homeless, supporting missions, and bringing light to our local community.",
+      "Helping people build meaningful relationships and grow together in Christ through fellowship, care, and spiritual connection.",
     image:
-      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=500",
-    // ⬇️ REQUIRED FIELDS FOR DYNAMIC PAGE ⬇️
+      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=500",
     fullContent:
-      "The Outreach Ministry coordinates efforts both locally and globally. We run a weekly food bank, participate in city clean-up days, and support missionaries overseas. Join us as we demonstrate God's love through practical action.",
-    coordinator: "The Outreach Team",
-    meetingTime: "Monthly planning meeting, 1st Tuesday at 6:00 PM",
+      "The Connect Ministry helps people feel welcomed, valued, and connected in the church family. We believe that spiritual growth happens best in the context of relationships. Through fellowship, follow-up, and care, we help individuals and families become part of a Christ-centered community.\n\nIn line with our mission to love and care for people so they may experience God's salvation through Jesus Christ, the Connect Ministry ensures that no one walks alone in their journey of faith.\n\nWe assist new members, encourage participation in Care Groups, and help everyone find a place where they can belong, grow, and serve.\n\nWe welcome all who desire to connect, build friendships, and grow deeper in their relationship with Christ.\n\nPlease contact the coordinator for more information.",
+    coordinator: "Cyrelle Pasco",
+    meetingTime: "As scheduled / During church activities (Weekly)",
   },
   {
     id: 7,
+    title: "Kids Ministry",
+    description:
+      "Helping children know Jesus, grow in faith, and experience God's love in a fun, safe, and nurturing environment.",
+    image:
+      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=500",
+    fullContent:
+      "The Kid's Ministry is dedicated to teaching children the Word of God in a way that is engaging, age-appropriate, and Christ-centered. Through Bible stories, songs, activities, and prayer, children learn about God's love and develop a strong spiritual foundation at an early age.\n\nIn line with our mission to love and care for people so they may experience God's salvation through Jesus Christ, we aim to guide children to know Jesus personally and grow in their faith as they mature.\n\nWe are committed to providing a safe, loving, and joyful environment where every child feels welcomed and valued.\n\nWe welcome all children and families! Our ministry is driven by love, passion, and a desire to help the next generation follow Christ.\n\nPlease contact the coordinator for more information.",
+    coordinator: "Lalaine Dorado",
+    meetingTime: "Sunday – during Worship Celebration (Weekly)",
+  },
+  {
+    id: 8,
     title: "Servants on Service (SOS)",
     description:
-      "Serving the homeless, supporting missions, and bringing light to our local community.",
+      "Serving with Christ-like compassion, supporting missions, and bringing the transforming light of Christ to our community through meaningful acts of love.",
     image:
-      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=500",
-    // ⬇️ REQUIRED FIELDS FOR DYNAMIC PAGE ⬇️
+      "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=500",
     fullContent:
-      "The Outreach Ministry coordinates efforts both locally and globally. We run a weekly food bank, participate in city clean-up days, and support missionaries overseas. Join us as we demonstrate God's love through practical action.",
-    coordinator: "The Outreach Team",
-    meetingTime: "Monthly planning meeting, 1st Tuesday at 6:00 PM",
+      "Servants on Service (SOS) is committed to demonstrating God's love through intentional acts of service. We reach out to the homeless, help meet practical needs, and support mission work locally and beyond. Through community outreach activities, we aim to bring hope, encouragement, and the message of salvation in Jesus Christ.\n\nIn line with our mission to love and care for people so they may experience God's salvation through Jesus Christ, SOS provides opportunities for believers to share Christ's compassion through action.\n\nWhether through feeding programs, community support, or mission partnerships, our goal is to shine the light of Christ and impact lives for His glory.\n\nWe welcome all new members! Our ministry is driven by compassion, unity, and a desire to serve God by serving others.\n\nPlease contact the coordinator for details on how to get involved.",
+    coordinator: "Michelle Rivera / Russell Floyd Del Monte",
+    meetingTime: "4th Sunday of the Month – 6:00 PM (Planning Meeting)",
   },
 ];
 
@@ -112,31 +119,41 @@ export const events = [
   {
     id: 1,
     title: "Sunday Worship Service",
-    date: "Every Sunday, 10:00 AM",
+    date: "Every Sunday – 8:30 AM",
     category: "Worship",
     image:
       "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&q=80&w=800",
     content:
-      "Join us for a powerful time of worship and a life-changing message from Pastor Ruel. Children's church is provided.",
+      "Join us for a Spirit-filled time of worship as we honor God through praise, prayer, and the preaching of His Word. Be encouraged and strengthened through a life-changing message that helps you grow in your relationship with Jesus Christ.\n\nKid's Church is available to help kids learn about God in a way they can understand.\n\nEveryone is welcome. Come and worship with us!",
   },
   {
     id: 2,
-    title: "Youth Service",
-    date: "October 15, 2023",
-    category: "Community",
-    image:
-      "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&q=80&w=500",
-    content:
-      "A fun day at the park for the whole family! Free food, games for kids, and great fellowship. Bring a lawn chair.",
-  },
-  {
-    id: 3,
-    title: "Night of Prayer",
-    date: "November 1, 2023",
-    category: "Spiritual Growth",
+    title: "Prayer Gathering",
+    date: "Every Wednesday – 6:00 PM",
+    category: "Prayer",
     image:
       "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&q=80&w=500",
     content:
-      "Come aside for an evening of deep prayer and intercession for our city and families.",
+      "Join us as we come together in unity to seek God through prayer. Our Prayer Gathering is a time to lift up personal needs, families, the church, and the community before the Lord.\n\nWe believe prayer is powerful and essential in the life of every believer. Through prayer, we experience God's guidance, strength, and peace.\n\nTogether, we pursue God's heart and align ourselves with His will.",
+  },
+  {
+    id: 3,
+    title: "Care Group Gathering",
+    date: "Every Sunday – 10:00 AM",
+    category: "Fellowship",
+    image:
+      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=500",
+    content:
+      "Care Groups provide a place to build meaningful relationships, study God's Word, and encourage one another in the Christian life. This is a time for sharing, prayer, and spiritual growth in a smaller group setting.\n\nIn Care Groups, we support one another and grow stronger in faith as a church family.\n\nEveryone is welcome to join and be connected.",
+  },
+  {
+    id: 4,
+    title: "Youth Gathering",
+    date: "Friday (Twice a Month) – 5:00 PM",
+    category: "Youth",
+    image:
+      "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&q=80&w=500",
+    content:
+      "Our Youth Gathering is a fun and meaningful time where young people grow in their faith, build strong friendships, and learn biblical truths that apply to everyday life.\n\nActivities include worship, group discussions, games, and fellowship in a safe and welcoming environment.\n\nAll youth are welcome!",
   },
 ];

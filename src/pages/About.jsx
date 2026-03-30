@@ -1,5 +1,15 @@
 import { motion } from "framer-motion";
-import { User, BookOpen, Heart, Globe, Target, Calendar } from "lucide-react";
+import {
+  User,
+  BookOpen,
+  Heart,
+  Globe,
+  Target,
+  Calendar,
+  Cross,
+  Flame,
+  Crown,
+} from "lucide-react";
 
 import pastor from "../assets/pastor.jpg";
 import historic from "../assets/image.png";
@@ -23,13 +33,28 @@ const About = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 space-y-12 sm:space-y-16 md:space-y-20">
+        {/* THEME VERSE */}
+        <section className="bg-white p-6 sm:p-8 md:p-10 rounded-xl sm:rounded-2xl shadow-xl border-l-4 border-[#6aa84f] text-center">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1a531a] mb-3 sm:mb-4">
+            GPLC Theme Verse
+          </h2>
+          <p className="text-[#6aa84f] font-semibold text-base sm:text-lg mb-3">
+            Psalm 23:1–2 (NIV)
+          </p>
+          <blockquote className="italic text-gray-700 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+            "The Lord is my shepherd, I lack nothing. He makes me lie down in
+            green pastures, He leads me beside quiet waters, He refreshes my
+            soul. He guides me along the right paths for His name's sake."
+          </blockquote>
+        </section>
+
         {/* PASTOR'S PROFILE */}
         <section className="grid md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 items-center bg-white p-6 sm:p-8 md:p-10 rounded-xl sm:rounded-2xl shadow-2xl border-t-4 sm:border-t-8 border-[#6aa84f]">
           {/* Pastor Image & Title */}
           <div className="md:col-span-1 text-center">
             <img
               src={pastor}
-              alt="Pastor John Doe"
+              alt="Pastor Ruel Del Monte"
               className="w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 rounded-full mx-auto object-cover shadow-2xl border-4 sm:border-8 border-gray-100 transition-transform hover:scale-[1.02]"
             />
             <h3 className="mt-4 sm:mt-5 md:mt-6 text-2xl sm:text-3xl font-bold text-gray-900">
@@ -46,11 +71,15 @@ const About = () => {
               A Word from Pastor Ruel
             </h2>
             <p className="text-gray-700 text-base sm:text-lg leading-relaxed italic border-l-4 border-gray-200 pl-3 sm:pl-4">
-              "We believe the church is more than just a building—it's a family.
-              My deepest desire is for every person who walks through our doors
-              to feel seen, loved, and challenged to grow into the person God
-              created them to be. Come join us as we live out the Gospel
-              together, building a legacy of faith in our wonderful city."
+              "I believe the church is more than a building — it is a family. Our
+              desire is to bring people to Christ, nurture them in His Word, and
+              equip them to become fully trained disciples who will serve God
+              faithfully in every season of life."
+            </p>
+            <p className="text-sm text-gray-500 mt-3 italic">
+              2 Timothy 2:2 – "And the things you have heard me say in the
+              presence of many witnesses entrust to reliable people who will also
+              be qualified to teach others."
             </p>
             <a
               href="/contact"
@@ -72,9 +101,12 @@ const About = () => {
               Our Mission
             </h3>
             <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-              To lead people into a growing relationship with Jesus Christ
-              through biblical teaching, authentic community, and sacrificial
-              service to our neighbors and the world.
+              "To love and care for people so they may experience God's salvation
+              through Jesus Christ."
+            </p>
+            <p className="text-sm text-gray-500 mt-3 italic">
+              Romans 5:8 – "But God demonstrates His own love for us in this:
+              While we were still sinners, Christ died for us."
             </p>
           </div>
           <div className="bg-white p-6 sm:p-8 md:p-10 rounded-xl sm:rounded-2xl shadow-xl border-l-4 border-[#6aa84f]">
@@ -86,69 +118,128 @@ const About = () => {
               Our Vision
             </h3>
             <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-              To see our city transformed by the Gospel, one life at a time,
-              creating a legacy of faith that impacts future generations and
-              reflects Christ's love to all.
+              "A church fully committed to bringing people to Christ, nurturing
+              them, and empowering them to be effective witnesses in their
+              families, communities, and to the whole world."
+            </p>
+            <p className="text-sm text-gray-500 mt-3 italic">
+              Acts 1:8 – "You will be My witnesses in Jerusalem, in all Judea
+              and Samaria, and to the ends of the earth."
             </p>
           </div>
         </section>
 
-        {/* CORE BELIEFS */}
+        {/* CORE BELIEFS - 6 PILLARS */}
         <section className="py-6 sm:py-8 md:py-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 sm:mb-10 md:mb-12 text-center border-b-2 border-[#1a531a]/20 pb-3 sm:pb-4">
             The Pillars of Our Faith
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
             <div className="text-center p-6 sm:p-7 md:p-8 bg-white border border-gray-200 rounded-xl shadow-lg transition hover:shadow-xl hover:scale-[1.01]">
-              <BookOpen
+              <Crown
                 size={40}
                 className="text-[#1a531a] mx-auto mb-3 sm:mb-4 sm:w-12 sm:h-12"
+              />
+              <h3 className="font-bold text-xl sm:text-2xl mb-2 text-[#1a531a]">
+                The Triune God
+              </h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                We believe in one God, eternally existing in three persons:
+                Father, Son, and Holy Spirit. He is the Creator, Sustainer, and
+                Ruler of all things, worthy of our worship and obedience.
+              </p>
+              <p className="text-xs text-gray-400 mt-2 italic">
+                Deuteronomy 6:4
+              </p>
+            </div>
+            <div className="text-center p-6 sm:p-7 md:p-8 bg-white border border-gray-200 rounded-xl shadow-lg transition hover:shadow-xl hover:scale-[1.01]">
+              <BookOpen
+                size={40}
+                className="text-[#6aa84f] mx-auto mb-3 sm:mb-4 sm:w-12 sm:h-12"
               />
               <h3 className="font-bold text-xl sm:text-2xl mb-2 text-[#1a531a]">
                 Scripture Alone
               </h3>
               <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                We believe the Bible is the inspired, infallible Word of God,
-                our final and sufficient authority for faith and life.
+                We believe the Bible is the inspired, infallible, and
+                authoritative Word of God. It is the final authority for our
+                faith, doctrine, and daily life.
+              </p>
+              <p className="text-xs text-gray-400 mt-2 italic">
+                2 Timothy 3:16-17
               </p>
             </div>
             <div className="text-center p-6 sm:p-7 md:p-8 bg-white border border-gray-200 rounded-xl shadow-lg transition hover:shadow-xl hover:scale-[1.01]">
-              <User
-                size={40}
-                className="text-[#6aa84f] mx-auto mb-3 sm:mb-4 sm:w-12 sm:h-12"
-              />
-              <h3 className="font-bold text-xl sm:text-2xl mb-2 text-[#1a531a]">
-                The Lordship of Christ
-              </h3>
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                We believe in one God, eternally existing as the Father, Son
-                (Jesus Christ), and Holy Spirit, with Jesus as the head of the
-                Church.
-              </p>
-            </div>
-            <div className="text-center p-6 sm:p-7 md:p-8 bg-white border border-gray-200 rounded-xl shadow-lg transition hover:shadow-xl hover:scale-[1.01] sm:col-span-2 lg:col-span-1">
-              <Heart
+              <Cross
                 size={40}
                 className="text-[#1a531a] mx-auto mb-3 sm:mb-4 sm:w-12 sm:h-12"
               />
               <h3 className="font-bold text-xl sm:text-2xl mb-2 text-[#1a531a]">
-                Grace Through Faith
+                Jesus Christ
               </h3>
               <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                We believe salvation is by grace through faith alone in Jesus
-                Christ, a free gift received through repentance.
+                We believe Jesus Christ is the eternal Son of God, fully God and
+                fully man. He lived a sinless life, died for our sins, rose
+                again, and is the only mediator between God and humanity.
+              </p>
+              <p className="text-xs text-gray-400 mt-2 italic">John 14:6</p>
+            </div>
+            <div className="text-center p-6 sm:p-7 md:p-8 bg-white border border-gray-200 rounded-xl shadow-lg transition hover:shadow-xl hover:scale-[1.01]">
+              <Heart
+                size={40}
+                className="text-[#6aa84f] mx-auto mb-3 sm:mb-4 sm:w-12 sm:h-12"
+              />
+              <h3 className="font-bold text-xl sm:text-2xl mb-2 text-[#1a531a]">
+                Salvation by Grace
+              </h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                We believe salvation is the gift of God's grace, received through
+                repentance and faith in Jesus Christ alone, not by works. Through
+                Him we receive forgiveness and eternal life.
+              </p>
+              <p className="text-xs text-gray-400 mt-2 italic">
+                Ephesians 2:8-9
+              </p>
+            </div>
+            <div className="text-center p-6 sm:p-7 md:p-8 bg-white border border-gray-200 rounded-xl shadow-lg transition hover:shadow-xl hover:scale-[1.01]">
+              <Flame
+                size={40}
+                className="text-[#1a531a] mx-auto mb-3 sm:mb-4 sm:w-12 sm:h-12"
+              />
+              <h3 className="font-bold text-xl sm:text-2xl mb-2 text-[#1a531a]">
+                The Holy Spirit
+              </h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                We believe the Holy Spirit gives new life, empowers believers for
+                holy living, and enables us to grow spiritually and be effective
+                witnesses for Christ.
+              </p>
+              <p className="text-xs text-gray-400 mt-2 italic">Acts 1:8</p>
+            </div>
+            <div className="text-center p-6 sm:p-7 md:p-8 bg-white border border-gray-200 rounded-xl shadow-lg transition hover:shadow-xl hover:scale-[1.01]">
+              <Globe
+                size={40}
+                className="text-[#6aa84f] mx-auto mb-3 sm:mb-4 sm:w-12 sm:h-12"
+              />
+              <h3 className="font-bold text-xl sm:text-2xl mb-2 text-[#1a531a]">
+                The Mission of the Church
+              </h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                We believe the Church is called to proclaim the Gospel, make
+                disciples, and demonstrate God's love to all nations for His
+                glory.
+              </p>
+              <p className="text-xs text-gray-400 mt-2 italic">
+                Matthew 28:19-20
               </p>
             </div>
           </div>
-          <p className="text-center text-gray-500 mt-6 sm:mt-8 md:mt-10 text-xs sm:text-sm">
-            Our full Statement of Faith is available upon request.
-          </p>
         </section>
 
         {/* HISTORY */}
         <section className="bg-white p-6 sm:p-8 md:p-10 rounded-xl sm:rounded-2xl shadow-xl">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 mb-6 sm:mb-8 md:mb-10 border-b-2 border-[#6aa84f]/50 pb-3 sm:pb-4">
-            Our Legacy: A History of GPLC
+            Our History
           </h2>
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 items-center">
             {/* Image */}
@@ -161,20 +252,29 @@ const About = () => {
             </div>
             <div className="text-gray-700 space-y-3 sm:space-y-4 text-base sm:text-lg leading-relaxed">
               <p>
-                Founded in 1985 by a small group of families praying in a living
-                room, GPLC quickly grew with a simple yet powerful belief: the
-                power of authentic community and the truth of the Gospel.
+                Our church began as an outreach in Barangay Santisimo Rosario,
+                San Pablo City, Laguna. The ministry started through an
+                evangelistic crusade, followed by intentional follow-up and
+                discipleship. From there, small groups were formed in different
+                areas of Santisimo. By God's grace, these small gatherings
+                continued to grow as more people came to know Christ.
               </p>
               <p>
-                We moved into our current facility in 1998, a significant step
-                that allowed us to expand our children's and outreach programs,
-                cementing our commitment to the city.
+                On July 25, 2008, a greater work officially began as the
+                ministry was established as a church. What was once known as
+                Frontline Worship Center San Isidro, also recognized as
+                Greenbox, has now been given a new name: Green Pasture Life
+                Church Inc.
               </p>
               <p>
-                Most recently, we completed the expansion of our dedicated youth
-                center in 2020. We look back with profound gratitude for God's
-                faithfulness and look forward with great expectancy for what He
-                will do next in our community.
+                The mission remains the same, but we believe the Lord is leading
+                us into a greater purpose and wider harvest. We believe that the
+                true Church is not defined by a structure, but by the people of
+                God united together for His glory.
+              </p>
+              <p className="font-semibold text-[#1a531a]">
+                We thank the Lord for His faithfulness through the years. To Him
+                be all the glory.
               </p>
             </div>
           </div>
@@ -185,7 +285,7 @@ const About = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-6 sm:mb-7 md:mb-8 text-center border-b border-white/50 pb-3 sm:pb-4">
             Join Us This Week
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 text-center">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 text-center">
             <div className="bg-white/10 p-5 sm:p-6 rounded-lg border-b-4 border-[#6aa84f]">
               <Calendar
                 size={28}
@@ -193,10 +293,23 @@ const About = () => {
               />
               <div className="text-2xl sm:text-3xl font-bold mb-1">Sundays</div>
               <div className="text-white text-lg sm:text-xl font-semibold">
-                9:00 AM & 11:00 AM
+                8:30 AM – 10:00 AM
               </div>
               <div className="text-xs sm:text-sm mt-2 opacity-80">
-                Worship Service & Full Kids Church
+                Worship Celebration
+              </div>
+            </div>
+            <div className="bg-white/10 p-5 sm:p-6 rounded-lg border-b-4 border-[#6aa84f]">
+              <Calendar
+                size={28}
+                className="mx-auto mb-2 sm:mb-3 text-[#6aa84f] sm:w-8 sm:h-8"
+              />
+              <div className="text-2xl sm:text-3xl font-bold mb-1">Sundays</div>
+              <div className="text-white text-lg sm:text-xl font-semibold">
+                10:00 AM – 10:30 AM
+              </div>
+              <div className="text-xs sm:text-sm mt-2 opacity-80">
+                Care Group Gathering
               </div>
             </div>
             <div className="bg-white/10 p-5 sm:p-6 rounded-lg border-b-4 border-[#6aa84f]">
@@ -205,26 +318,26 @@ const About = () => {
                 className="mx-auto mb-2 sm:mb-3 text-[#6aa84f] sm:w-8 sm:h-8"
               />
               <div className="text-2xl sm:text-3xl font-bold mb-1">
-                Wednesdays
+                Wednesday
               </div>
               <div className="text-white text-lg sm:text-xl font-semibold">
-                7:00 PM
+                6:00 PM – 7:00 PM
               </div>
               <div className="text-xs sm:text-sm mt-2 opacity-80">
-                Midweek Bible Study & Youth Group
+                Prayer Gathering
               </div>
             </div>
-            <div className="bg-white/10 p-5 sm:p-6 rounded-lg border-b-4 border-[#6aa84f] sm:col-span-2 lg:col-span-1">
+            <div className="bg-white/10 p-5 sm:p-6 rounded-lg border-b-4 border-[#6aa84f]">
               <Calendar
                 size={28}
                 className="mx-auto mb-2 sm:mb-3 text-[#6aa84f] sm:w-8 sm:h-8"
               />
-              <div className="text-2xl sm:text-3xl font-bold mb-1">Fridays</div>
+              <div className="text-2xl sm:text-3xl font-bold mb-1">Friday</div>
               <div className="text-white text-lg sm:text-xl font-semibold">
-                6:00 AM
+                5:00 PM – 7:00 PM
               </div>
               <div className="text-xs sm:text-sm mt-2 opacity-80">
-                Morning Prayer Meeting (Open to All)
+                Youth GIG (Twice a Month)
               </div>
             </div>
           </div>

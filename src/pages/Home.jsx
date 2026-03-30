@@ -55,6 +55,12 @@ const Home = () => {
           >
             Your Church, Your Family.
           </motion.p>
+          <motion.p
+            variants={itemVariants}
+            className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8 opacity-80 max-w-2xl mx-auto"
+          >
+            SEC Registered # 2024050148957-08
+          </motion.p>
           <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4"
@@ -78,12 +84,12 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-center md:justify-around items-center gap-3 sm:gap-4 text-center text-white">
           <p className="flex items-center gap-2 font-semibold text-sm sm:text-base">
             <Clock size={18} className="text-[#6aa84f] flex-shrink-0" />
-            <span>Sunday Worship: 08:00 AM</span>
+            <span>Sunday Worship: 8:30 AM</span>
           </p>
           <p className="flex items-center gap-2 font-semibold text-sm sm:text-base">
             <MapPin size={18} className="text-[#6aa84f] flex-shrink-0" />
             <span className="text-center md:text-left">
-              Bgry, Santisimo Rosario, City of San Pablo, Laguna Philippines
+              Sitio Ilaya, Brgy. Santisimo Rosario, San Pablo City, Laguna
             </span>
           </p>
         </div>
@@ -96,11 +102,11 @@ const Home = () => {
           <div className="md:col-span-1 text-center">
             <img
               src={pastor}
-              alt="Senior Pastor Ruel Delmonte"
+              alt="Senior Pastor Ruel Del Monte"
               className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full mx-auto object-cover shadow-2xl border-4 border-[#6aa84f]"
             />
             <p className="mt-3 sm:mt-4 text-xl sm:text-2xl font-bold text-gray-800">
-              Ruel Delmonte
+              Ruel Del Monte
             </p>
             <p className="text-lg sm:text-xl" style={{ color: "#1a531a" }}>
               Senior Pastor
@@ -119,11 +125,10 @@ const Home = () => {
               className="italic text-gray-700 text-base sm:text-lg md:text-xl leading-relaxed border-l-4 pl-4 sm:pl-6"
               style={{ borderColor: "#6aa84f" }}
             >
-              "We are so glad you are here. At Green Pasture Life Church, we
-              believe in the transformative power of the Gospel. Whether you
-              have been a believer for years or are just asking questions, you
-              have a place here. Come as you are, and experience the love of
-              Christ in a community that cares. We look forward to meeting you!"
+              "I believe the church is more than a building — it is a family.
+              Our desire is to bring people to Christ, nurture them in His
+              Word, and equip them to become fully trained disciples who will
+              serve God faithfully in every season of life."
             </blockquote>
             <Link
               to="/about"

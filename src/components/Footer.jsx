@@ -17,8 +17,10 @@ const SECONDARY_COLOR_ACCENT = "#6aa84f"; // Bright Lime Green for accents/hover
 const Footer = () => {
   // Mock data for Service Times (assuming it's not in churchInfo)
   const serviceTimes = [
-    { day: "Sunday Worship", time: "9:00 AM & 11:00 AM" },
-    { day: "Wednesday Bible Study", time: "7:00 PM" },
+    { day: "Sunday Worship", time: "8:30 AM – 10:00 AM" },
+    { day: "Care Group Gathering", time: "Sunday 10:00 AM" },
+    { day: "Prayer Gathering", time: "Wednesday 6:00 PM" },
+    { day: "Youth GIG", time: "Friday 5:00 PM (Twice a Month)" },
   ];
 
   return (

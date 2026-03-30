@@ -8,10 +8,12 @@ import React from "react";
 // Mock Data updated with user's provided information
 const churchInfo = {
   name: "Green Pasture Life Church",
-  tagline: "Loving God, Loving People, Serving the World.",
-  email: "sample@gmail.com",
-  phone: "(555) 123-4567",
-  address: "Bgry, Santisimo Rosario, City of San Pablo, Laguna Philippines",
+  tagline: "The Lord is my shepherd, I lack nothing.",
+  email: "rueldelmonte4@gmail.com",
+  phone: "049-557-5188",
+  phone2: "0927-938-4441",
+  address:
+    "Sitio Ilaya, Barangay Santisimo Rosario, San Pablo City, Laguna 4000, Philippines",
   socials: {
     facebook: "https://facebook.com",
     youtube: "https://youtube.com",
@@ -20,7 +22,7 @@ const churchInfo = {
 };
 
 const Contact = () => {
-  const form = useRef();
+  const form = useRef(null);
   const [status, setStatus] = useState(""); // 'sending', 'success', 'error'
 
   const sendEmail = (e) => {
@@ -77,8 +79,9 @@ const Contact = () => {
               Get in Touch
             </h1>
             <p className="text-gray-600 mb-10 text-lg leading-relaxed">
-              We would love to hear from you! Whether you have a prayer request,
-              a question about our ministries, or just want to say hello.
+              We would love to hear from you! Whether you have a prayer
+              request, questions about our ministry, or simply want to
+              connect, feel free to reach out.
             </p>
 
             <div className="space-y-8">
@@ -117,6 +120,7 @@ const Contact = () => {
                     Call Us
                   </h3>
                   <p className="text-gray-600">{churchInfo.phone}</p>
+                  <p className="text-gray-600">{churchInfo.phone2}</p>
                 </div>
               </div>
 
@@ -154,7 +158,8 @@ const Contact = () => {
                   >
                     Office Hours
                   </h3>
-                  <p className="text-gray-600">Mon - Fri: 9:00 AM - 4:00 PM</p>
+                  <p className="text-gray-600">Tuesday – Friday</p>
+                  <p className="text-gray-600">9:00 AM – 4:00 PM</p>
                 </div>
               </div>
             </div>

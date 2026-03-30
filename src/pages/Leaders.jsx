@@ -12,7 +12,8 @@ const teams = [
   {
     name: "Core Leaders",
     icon: Users,
-    description: "Spiritual oversight and church governance",
+    description:
+      "Our Core Leaders serve with dedication and faith, providing guidance, support, and spiritual oversight in different ministry areas. They are committed to nurturing disciples, developing leaders, and helping the church fulfill its mission of reaching people for Christ.",
     members: [
       {
         id: 1,
@@ -23,19 +24,19 @@ const teams = [
       {
         id: 2,
         name: "Florencia Del Monte",
-        role: "Admin",
+        role: "Church Administrator",
         image: "https://placehold.co/400x400/6aa84f/1a531a?text=Florencia",
       },
       {
         id: 3,
         name: "Federico Almario",
-        role: "Asst Pastor",
+        role: "Associate Pastor",
         image: "https://placehold.co/400x400/1a531a/ffffff?text=Federico",
       },
       {
         id: 4,
         name: "Grace Bombane",
-        role: "Finance Coach",
+        role: "Core Leader",
         image: "https://placehold.co/400x400/6aa84f/1a531a?text=Grace",
       },
       {
@@ -52,7 +53,7 @@ const teams = [
       },
 
       {
-        id: 6,
+        id: 7,
         name: "Michelle Angela Rivera",
         role: "Core Leader",
         image: "https://placehold.co/400x400/1a531a/ffffff?text=Michelle",
@@ -245,8 +246,10 @@ const Leaders = () => {
             Our Dedicated Leadership
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
-            Committed to spiritual excellence and community service, our leaders
-            guide our mission with dedication and faith.
+            Committed to spiritual growth and Christ-centered service, our
+            leaders faithfully guide the church with integrity, humility, and a
+            heart to love and care for people so they may experience God's
+            salvation through Jesus Christ.
           </p>
         </header>
 
