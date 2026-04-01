@@ -2,26 +2,30 @@ import { Link } from "react-router-dom";
 import { ministries } from "../data/mockdata";
 import { motion } from "framer-motion";
 import React from "react";
-
-// Color Palette Variables: Primary: #1a531a (Deep Forest Green), Secondary: #6aa84f (Bright Lime Green)
+import heroBg from "../assets/sundayservice.jpg";
 
 const Ministries = () => {
   return (
-    <div className="bg-gray-50 min-h-screen py-8 sm:py-12 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <div className="text-center mb-8 sm:mb-12 md:mb-16">
-          <h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 sm:mb-4 px-2"
-            style={{ color: "#1a531a" }}
-          >
-            Our Ministries & Groups 🌳
+    <div className="bg-gray-50 min-h-screen">
+      {/* HERO BANNER */}
+      <section
+        className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] bg-cover bg-center flex items-center justify-center text-center px-4"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.45)), url("${heroBg}")`,
+        }}
+      >
+        <div className="relative z-10 text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
+            Our Ministries & Groups
           </h1>
-          <p className="text-gray-700 max-w-3xl mx-auto text-base sm:text-lg md:text-xl px-4 leading-relaxed">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl opacity-90 max-w-3xl mx-auto">
             There is a place for you here. Explore the different ways you can
             connect, grow, and serve within our church family and community.
           </p>
         </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
 
         {/* Ministries Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">

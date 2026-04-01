@@ -2,20 +2,29 @@ import { Link } from "react-router-dom";
 import { events } from "../data/mockdata";
 import React from "react";
 import { Calendar, Clock, MapPin } from "lucide-react";
-
-// Color Palette Variables: Primary: #1a531a (Deep Forest Green), Secondary: #6aa84f (Bright Lime Green)
+import heroBg from "../assets/prayergathering.jpg";
 
 const Events = () => {
   return (
-    <div className="bg-gray-50 min-h-screen py-8 sm:py-12 md:py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <h1
-          className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-8 sm:mb-10 md:mb-12 text-center px-2"
-          style={{ color: "#1a531a" }}
-        >
-          Upcoming Events & Activities 🗓️
-        </h1>
+    <div className="bg-gray-50 min-h-screen">
+      {/* HERO BANNER */}
+      <section
+        className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] bg-cover bg-center flex items-center justify-center text-center px-4"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.45)), url("${heroBg}")`,
+        }}
+      >
+        <div className="relative z-10 text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
+            Upcoming Events & Activities
+          </h1>
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl opacity-90 max-w-3xl mx-auto">
+            Don't miss out on what's happening in our community.
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-6xl mx-auto py-8 sm:py-12 md:py-16 px-4">
 
         {/* Events List */}
         <div className="space-y-6 sm:space-y-8 md:space-y-10">

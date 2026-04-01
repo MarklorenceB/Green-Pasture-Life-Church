@@ -12,7 +12,8 @@ import {
 } from "lucide-react";
 
 import pastor from "../assets/pastor.jpg";
-import historic from "../assets/image.png";
+import historic from "../assets/fampic.jpg";
+import heroBg from "../assets/caregroup.jpg";
 
 const About = () => {
   return (
@@ -22,15 +23,22 @@ const About = () => {
       exit={{ opacity: 0 }}
       className="bg-gray-50 min-h-screen"
     >
-      {/* HEADER */}
-      <div className="bg-[#1a531a] py-12 sm:py-16 md:py-20 text-center text-white shadow-xl px-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
-          Our Story, Our People
-        </h1>
-        <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl opacity-90 max-w-3xl mx-auto">
-          Rooted in Faith, Growing in Grace. Committed to Community.
-        </p>
-      </div>
+      {/* HERO BANNER */}
+      <section
+        className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] bg-cover bg-center flex items-center justify-center text-center px-4"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.45)), url("${heroBg}")`,
+        }}
+      >
+        <div className="relative z-10 text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
+            Our Story, Our People
+          </h1>
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl opacity-90 max-w-3xl mx-auto">
+            Rooted in Faith, Growing in Grace. Committed to Community.
+          </p>
+        </div>
+      </section>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 space-y-12 sm:space-y-16 md:space-y-20">
         {/* THEME VERSE */}
@@ -71,15 +79,15 @@ const About = () => {
               A Word from Pastor Ruel
             </h2>
             <p className="text-gray-700 text-base sm:text-lg leading-relaxed italic border-l-4 border-gray-200 pl-3 sm:pl-4">
-              "I believe the church is more than a building — it is a family. Our
-              desire is to bring people to Christ, nurture them in His Word, and
-              equip them to become fully trained disciples who will serve God
-              faithfully in every season of life."
+              "I believe the church is more than a building — it is a family.
+              Our desire is to bring people to Christ, nurture them in His Word,
+              and equip them to become fully trained disciples who will serve
+              God faithfully in every season of life."
             </p>
             <p className="text-sm text-gray-500 mt-3 italic">
               2 Timothy 2:2 – "And the things you have heard me say in the
-              presence of many witnesses entrust to reliable people who will also
-              be qualified to teach others."
+              presence of many witnesses entrust to reliable people who will
+              also be qualified to teach others."
             </p>
             <a
               href="/contact"
@@ -101,8 +109,8 @@ const About = () => {
               Our Mission
             </h3>
             <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-              "To love and care for people so they may experience God's salvation
-              through Jesus Christ."
+              "To love and care for people so they may experience God's
+              salvation through Jesus Christ."
             </p>
             <p className="text-sm text-gray-500 mt-3 italic">
               Romans 5:8 – "But God demonstrates His own love for us in this:
@@ -193,9 +201,9 @@ const About = () => {
                 Salvation by Grace
               </h3>
               <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                We believe salvation is the gift of God's grace, received through
-                repentance and faith in Jesus Christ alone, not by works. Through
-                Him we receive forgiveness and eternal life.
+                We believe salvation is the gift of God's grace, received
+                through repentance and faith in Jesus Christ alone, not by
+                works. Through Him we receive forgiveness and eternal life.
               </p>
               <p className="text-xs text-gray-400 mt-2 italic">
                 Ephesians 2:8-9
@@ -210,9 +218,9 @@ const About = () => {
                 The Holy Spirit
               </h3>
               <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                We believe the Holy Spirit gives new life, empowers believers for
-                holy living, and enables us to grow spiritually and be effective
-                witnesses for Christ.
+                We believe the Holy Spirit gives new life, empowers believers
+                for holy living, and enables us to grow spiritually and be
+                effective witnesses for Christ.
               </p>
               <p className="text-xs text-gray-400 mt-2 italic">Acts 1:8</p>
             </div>

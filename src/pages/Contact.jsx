@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
-// Removed import emailjs from "@emailjs/browser";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import React from "react";
+import heroBg from "../assets/image.png";
 
 // Color Palette Variables: Primary: #1a531a (Deep Forest Green), Secondary: #6aa84f (Bright Lime Green)
 
@@ -68,6 +68,24 @@ const Contact = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
+      {/* HERO BANNER */}
+      <section
+        className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] bg-cover bg-center flex items-center justify-center text-center px-4"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.45)), url("${heroBg}")`,
+        }}
+      >
+        <div className="relative z-10 text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
+            Get in Touch
+          </h1>
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl opacity-90 max-w-3xl mx-auto">
+            We would love to hear from you! Whether you have a prayer request,
+            questions about our ministry, or simply want to connect.
+          </p>
+        </div>
+      </section>
+
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
