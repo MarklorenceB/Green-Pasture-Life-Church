@@ -19,6 +19,9 @@ import Leaders from "./pages/Leaders";
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
+    // Scrolling lives on #root (body is position:fixed), so reset that.
+    const root = document.getElementById("root");
+    if (root) root.scrollTop = 0;
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
