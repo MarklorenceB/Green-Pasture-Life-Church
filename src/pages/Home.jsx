@@ -2,264 +2,307 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { events, ministries } from "../data/mockdata";
-import { ArrowRight, Calendar, Clock, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Calendar, Clock, MapPin } from "lucide-react";
+import Reveal from "../components/Reveal";
+import { staggerContainer, staggerItem } from "../lib/motion";
+import Eyebrow from "../components/Eyebrow";
+import PastureHorizon from "../components/PastureHorizon";
 import pastor from "../assets/pastor.jpg";
-import customBanner from "../assets/banner.jpg";
+import banner from "../assets/banner.jpg";
 
-// Color Palette Variables: Primary: #1a531a (Deep Forest Green), Secondary: #6aa84f (Bright Lime Green)
-
-const containerVariants = {
+const heroText = {
   hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
+  show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 };
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } },
+const heroItem = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const Home = () => {
-  const heroImage = customBanner;
   const latestEvents = events.slice(0, 3);
 
   return (
-    <div className="w-full">
-      {/* HERO SECTION */}
-      <section
-        className="relative h-[70vh] sm:h-[75vh] md:h-[80vh] lg:h-[85vh] bg-cover bg-center flex items-center justify-center text-center px-4 shadow-2xl"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url("${heroImage}")`,
-        }}
-      >
-        <motion.div
-          className="relative z-10 max-w-5xl mx-auto text-white px-4"
-          initial="hidden"
-          animate="show"
-          variants={containerVariants}
-        >
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-3 sm:mb-4 tracking-tight leading-tight"
-            style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.5)" }}
-          >
-            Green Pasture Life Church
-          </motion.h1>
-          <motion.p
-            variants={itemVariants}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 sm:mb-8 md:mb-10 font-light max-w-3xl mx-auto"
-          >
-            Your Church, Your Family.
-          </motion.p>
-          <motion.p
-            variants={itemVariants}
-            className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8 opacity-80 max-w-2xl mx-auto"
-          >
-            SEC Registered # 2024050148957-08
-          </motion.p>
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4"
-          >
-            <Link
-              to="/contact"
-              style={{ backgroundColor: "#6aa84f" }}
-              className="hover:bg-[#1a531a] text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg text-base sm:text-lg md:text-xl font-bold transition duration-300 shadow-xl ring-4 ring-white/30"
+    <div className="w-full bg-canvas">
+      {/* ───────────────── HERO ───────────────── */}
+      <section className="relative overflow-hidden bg-moss min-h-[92vh] flex items-center">
+        {/* Full-bleed background image */}
+        <img
+          src={banner}
+          alt="Green Pasture Life Church gathered in worship"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Green wash for legibility + brand tone (not a flat black scrim) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(15,46,26,0.78) 0%, rgba(15,46,26,0.45) 35%, rgba(15,46,26,0.55) 70%, rgba(15,46,26,0.92) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 55% at 85% 10%, rgba(200,162,75,0.22) 0%, transparent 60%)",
+          }}
+        />
+
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-5 sm:px-8 pt-28 pb-36 sm:pb-44 md:pb-52 text-center">
+          <motion.div variants={heroText} initial="hidden" animate="show">
+            <motion.div variants={heroItem}>
+              <Eyebrow tone="light" align="center">
+                Psalm 23 · Our Name
+              </Eyebrow>
+            </motion.div>
+            <motion.h1
+              variants={heroItem}
+              className="mt-6 font-display font-light text-canvas text-[2.6rem] leading-[1.04] sm:text-6xl md:text-7xl tracking-tight"
+              style={{ textShadow: "0 2px 24px rgba(11,29,11,0.45)" }}
             >
-              Join Us This Sunday
-            </Link>
+              The Lord is my{" "}
+              <span className="italic text-wheat-300">shepherd,</span> I lack
+              nothing.
+            </motion.h1>
+            <motion.p
+              variants={heroItem}
+              className="mt-6 text-lg sm:text-xl text-canvas/90 max-w-xl mx-auto leading-relaxed"
+            >
+              Green Pasture Life Church — a family in San Pablo City, Laguna,
+              growing together in the grace of Jesus Christ.
+            </motion.p>
+            <motion.div
+              variants={heroItem}
+              className="mt-9 flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <Link
+                to="/contact"
+                className="group inline-flex items-center justify-center gap-2 bg-wheat text-moss px-7 py-3.5 rounded-full text-base font-semibold transition-all duration-300 hover:bg-canvas hover:-translate-y-0.5"
+              >
+                Join Us This Sunday
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/about"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-base font-semibold text-canvas border border-canvas/30 hover:border-wheat hover:text-wheat transition-colors duration-300"
+              >
+                Our Story
+              </Link>
+            </motion.div>
+            <motion.p
+              variants={heroItem}
+              className="mt-8 text-xs tracking-[0.2em] uppercase text-canvas/50"
+            >
+              SEC Registered #2024050148957-08
+            </motion.p>
           </motion.div>
-        </motion.div>
+        </div>
+
+        {/* Signature horizon */}
+        <div className="absolute bottom-0 inset-x-0">
+          <PastureHorizon variant="hero" className="h-24 sm:h-32 md:h-40 animate-drift" />
+        </div>
       </section>
 
-      {/* Service Time Callout */}
-      <div
-        className="py-3 sm:py-4 shadow-xl"
-        style={{ backgroundColor: "#1a531a" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-center md:justify-around items-center gap-3 sm:gap-4 text-center text-white">
-          <p className="flex items-center gap-2 font-semibold text-sm sm:text-base">
-            <Clock size={18} className="text-[#6aa84f] flex-shrink-0" />
-            <span>Sunday Worship: 8:30 AM</span>
+      {/* ───────────────── SERVICE CALLOUT ───────────────── */}
+      <div className="bg-pasture">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex flex-col md:flex-row items-center justify-center md:justify-between gap-3 text-canvas text-center md:text-left">
+          <p className="flex items-center gap-2.5 font-medium">
+            <Clock size={18} className="text-wheat flex-shrink-0" />
+            Sunday Worship Celebration · 8:30 AM – 10:00 AM
           </p>
-          <p className="flex items-center gap-2 font-semibold text-sm sm:text-base">
-            <MapPin size={18} className="text-[#6aa84f] flex-shrink-0" />
-            <span className="text-center md:text-left">
-              Sitio Ilaya, Brgy. Santisimo Rosario, San Pablo City, Laguna
-            </span>
+          <span className="hidden md:block h-4 w-px bg-canvas/20" />
+          <p className="flex items-center gap-2.5 font-medium">
+            <MapPin size={18} className="text-wheat flex-shrink-0" />
+            Sitio Ilaya, Brgy. Santisimo Rosario, San Pablo City, Laguna
           </p>
         </div>
       </div>
 
-      {/* PASTOR'S WELCOME */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 bg-white">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 items-center">
-          {/* Image Column */}
-          <div className="md:col-span-1 text-center">
-            <img
-              src={pastor}
-              alt="Senior Pastor Ruel Del Monte"
-              className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full mx-auto object-cover shadow-2xl border-4 border-[#6aa84f]"
-            />
-            <p className="mt-3 sm:mt-4 text-xl sm:text-2xl font-bold text-gray-800">
-              Ruel Del Monte
-            </p>
-            <p className="text-lg sm:text-xl" style={{ color: "#1a531a" }}>
-              Senior Pastor
-            </p>
-          </div>
+      {/* ───────────────── PASTOR'S WELCOME ───────────────── */}
+      <section className="py-20 md:py-28 px-5 sm:px-8">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+          <Reveal className="md:col-span-5">
+            <div className="relative max-w-xs mx-auto md:max-w-none">
+              <div className="arch overflow-hidden shadow-2xl aspect-[4/5] border-[6px] border-mist">
+                <img
+                  src={pastor}
+                  alt="Pastor Ruel Del Monte"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="mt-5 text-center">
+                <p className="font-display text-2xl text-pasture">Ruel Del Monte</p>
+                <p className="eyebrow text-wheat mt-1">Senior Pastor</p>
+              </div>
+            </div>
+          </Reveal>
 
-          {/* Message Column */}
-          <div className="md:col-span-2 text-left">
-            <h2
-              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 border-b-2 pb-2 sm:pb-3"
-              style={{ color: "#1a531a", borderColor: "#6aa84f" }}
-            >
-              A Personal Welcome
+          <Reveal delay={0.1} className="md:col-span-7">
+            <Eyebrow>A Personal Welcome</Eyebrow>
+            <h2 className="mt-5 font-display font-light text-pasture text-3xl sm:text-4xl md:text-5xl leading-tight">
+              The church is more than a building — it is a family.
             </h2>
-            <blockquote
-              className="italic text-gray-700 text-base sm:text-lg md:text-xl leading-relaxed border-l-4 pl-4 sm:pl-6"
-              style={{ borderColor: "#6aa84f" }}
-            >
-              "I believe the church is more than a building — it is a family.
-              Our desire is to bring people to Christ, nurture them in His
-              Word, and equip them to become fully trained disciples who will
-              serve God faithfully in every season of life."
+            <blockquote className="mt-7 font-serif italic text-stone text-lg sm:text-xl leading-relaxed border-l-2 border-wheat pl-6">
+              “Our desire is to bring people to Christ, nurture them in His Word,
+              and equip them to become fully trained disciples who will serve God
+              faithfully in every season of life.”
             </blockquote>
             <Link
               to="/about"
-              style={{ color: "#1a531a" }}
-              className="mt-4 sm:mt-6 inline-block font-semibold text-base sm:text-lg hover:text-[#6aa84f] transition duration-300"
+              className="group mt-8 inline-flex items-center gap-2 font-semibold text-pasture hover:text-meadow transition-colors"
             >
-              Read Our Full Story →
+              Read our full story
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* UPCOMING EVENTS PREVIEW */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 sm:mb-10 md:mb-12 gap-4">
+      {/* ───────────────── UPCOMING EVENTS ───────────────── */}
+      <section className="bg-mist py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8">
+          <Reveal className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
             <div>
-              <h2
-                className="text-2xl sm:text-3xl md:text-4xl font-bold"
-                style={{ color: "#1a531a" }}
-              >
+              <Eyebrow>Gather Together</Eyebrow>
+              <h2 className="mt-4 font-display font-light text-pasture text-3xl sm:text-4xl md:text-5xl">
                 Upcoming Events
               </h2>
-              <p className="text-gray-600 mt-2 text-sm sm:text-base md:text-lg">
-                Don't miss out on what's happening in our community.
-              </p>
             </div>
             <Link
               to="/events"
-              className="font-semibold flex items-center gap-2 hover:gap-3 transition-all text-base sm:text-lg"
-              style={{ color: "#6aa84f" }}
+              className="group inline-flex items-center gap-2 font-semibold text-meadow hover:text-pasture transition-colors"
             >
-              View All <ArrowRight size={20} />
+              View all events
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </Link>
-          </div>
+          </Reveal>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 md:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7"
+            variants={staggerContainer}
             initial="hidden"
-            animate="show"
-            variants={containerVariants}
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
           >
             {latestEvents.map((event) => (
-              <motion.div
-                key={event.id}
-                variants={itemVariants}
-                className="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl hover:scale-[1.02] border-t-4 border-[#6aa84f]/50"
-              >
-                <div className="h-44 sm:h-48 overflow-hidden">
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-5 sm:p-6">
-                  <div
-                    className="flex items-center gap-2 text-xs sm:text-sm font-semibold mb-2"
-                    style={{ color: "#6aa84f" }}
-                  >
-                    <Calendar size={14} className="sm:w-4 sm:h-4" />{" "}
-                    {event.date}
+              <motion.div key={event.id} variants={staggerItem}>
+                <Link
+                  to={`/events/${event.slug}`}
+                  className="group block bg-canvas rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 h-full"
+                >
+                  <div className="h-48 overflow-hidden">
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
                   </div>
-                  <h3
-                    className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 leading-tight"
-                    style={{ color: "#1a531a" }}
-                  >
-                    {event.title}
-                  </h3>
-                  <p className="text-gray-600 line-clamp-2 mb-3 sm:mb-4 text-sm sm:text-base">
-                    {event.content}
-                  </p>
-                  <Link
-                    to={`/events/${event.id}`}
-                    className="font-semibold transition text-sm sm:text-base"
-                    style={{ color: "#1a531a" }}
-                  >
-                    Details →
-                  </Link>
-                </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-meadow mb-3">
+                      <Calendar size={14} /> {event.category}
+                    </div>
+                    <h3 className="font-display text-xl text-pasture leading-snug mb-2">
+                      {event.title}
+                    </h3>
+                    <p className="text-sm text-stone mb-4">{event.date}</p>
+                    <p className="text-[15px] text-ink/70 line-clamp-2 leading-relaxed">
+                      {event.content}
+                    </p>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* MINISTRIES PREVIEW */}
-      <section className="py-12 sm:py-16 md:py-20 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 md:mb-12"
-            style={{ color: "#1a531a" }}
+      {/* ───────────────── MINISTRIES PREVIEW ───────────────── */}
+      <section className="py-20 md:py-28 px-5 sm:px-8">
+        <div className="max-w-7xl mx-auto">
+          <Reveal className="text-center max-w-2xl mx-auto mb-14">
+            <Eyebrow align="center">Belong Here</Eyebrow>
+            <h2 className="mt-4 font-display font-light text-pasture text-3xl sm:text-4xl md:text-5xl">
+              Find your place to belong
+            </h2>
+            <p className="mt-5 text-stone text-lg leading-relaxed">
+              From the youngest child to every season of life, there is a place
+              for you to grow, connect, and serve.
+            </p>
+          </Reveal>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
           >
-            Find Your Place to Belong
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {ministries.slice(0, 3).map((min) => (
-              <Link
-                to={`/ministries/${min.id}`}
-                key={min.id}
-                className="group relative h-64 sm:h-72 md:h-80 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-500"
-              >
-                <img
-                  src={min.image}
-                  alt={min.title}
-                  className="w-full h-full object-cover transition group-hover:scale-110 duration-500"
-                />
-                <div
-                  className="absolute inset-0 bg-black/40 flex items-end justify-start p-4 sm:p-5 md:p-6 transition duration-500"
-                  style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+              <motion.div key={min.id} variants={staggerItem}>
+                <Link
+                  to={`/ministries/${min.slug}`}
+                  className="group relative block h-80 rounded-3xl overflow-hidden shadow-lg"
                 >
-                  <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold border-b-2 border-[#6aa84f] transition duration-300 group-hover:border-white">
-                    {min.title}
-                  </h3>
-                </div>
-                <div
-                  className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"
-                  style={{ backgroundColor: "#1a531a99" }}
-                ></div>
-              </Link>
+                  <img
+                    src={min.image}
+                    alt={min.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-moss/85 via-moss/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <h3 className="font-display text-2xl text-canvas mb-1">
+                      {min.title}
+                    </h3>
+                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-wheat-300 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      Explore <ArrowUpRight size={15} />
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
-          </div>
-          <Link
-            to="/ministries"
-            className="mt-8 sm:mt-10 md:mt-12 inline-flex items-center font-bold text-lg sm:text-xl transition"
-            style={{ color: "#1a531a" }}
-          >
-            Explore All Ministries{" "}
-            <ArrowRight size={24} className="ml-2 hover:text-[#6aa84f]" />
-          </Link>
+          </motion.div>
+
+          <Reveal className="text-center mt-12">
+            <Link
+              to="/ministries"
+              className="group inline-flex items-center gap-2 bg-pasture text-canvas px-7 py-3.5 rounded-full font-semibold hover:bg-meadow transition-colors"
+            >
+              Explore all ministries
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
         </div>
+      </section>
+
+      {/* ───────────────── INVITATION CTA ───────────────── */}
+      <section className="relative bg-moss overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 80% at 50% 120%, rgba(106,168,79,0.25) 0%, transparent 65%)",
+          }}
+        />
+        <Reveal className="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 py-20 md:py-24 text-center">
+          <Eyebrow align="center" tone="light">
+            Romans 5:8
+          </Eyebrow>
+          <h2 className="mt-5 font-display font-light text-canvas text-3xl sm:text-4xl md:text-5xl leading-tight">
+            You are welcome here, just as you are.
+          </h2>
+          <p className="mt-5 text-meadow-300/90 text-lg leading-relaxed">
+            Our mission is to love and care for people so they may experience
+            God&apos;s salvation through Jesus Christ.
+          </p>
+          <Link
+            to="/contact"
+            className="mt-9 inline-flex items-center gap-2 bg-wheat text-moss px-8 py-3.5 rounded-full font-semibold hover:bg-canvas transition-colors"
+          >
+            Plan your visit
+            <ArrowRight size={18} />
+          </Link>
+        </Reveal>
       </section>
     </div>
   );

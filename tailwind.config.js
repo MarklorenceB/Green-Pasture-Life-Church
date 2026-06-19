@@ -1,20 +1,26 @@
 // tailwind.config.js
+// NOTE: Tailwind v4 loads tokens from the `@theme` block in src/index.css
+// (that is the source of truth). This file mirrors them for editor parity
+// and documents the "Quiet Pasture" palette.
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        // Updated colors based on your logo:
-        primary: "#1A531A", // A deep, rich forest green from the logo
-        secondary: "#6AA84F", // A brighter, more vibrant green/lime from the logo (leaf/text)
-        accent: "#f3f4f6", // Keeping a light gray for backgrounds/borders
-        // You might want a slightly darker green for hover states or specific elements
-        darkGreen: "#004700", // An even darker green for text or hover backgrounds
-        lightGreen: "#9CC47E", // A softer green
+        canvas: "#fbfaf4", // warm morning-light paper
+        pasture: "#1e4d2b", // deep pasture green (primary)
+        meadow: "#6aa84f", // living mid-green
+        moss: "#0f2e1a", // darkest green
+        wheat: "#c8a24b", // harvest-gold accent
+        mist: "#e7efe1", // pale green section bg
+        ink: "#1a2419", // green-tinted near-black text
+        stone: "#5b6b58", // muted secondary text
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        display: ["Fraunces", "ui-serif", "Georgia", "serif"],
+        serif: ["Fraunces", "ui-serif", "Georgia", "serif"],
+        sans: ["Figtree", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
       },
     },
   },

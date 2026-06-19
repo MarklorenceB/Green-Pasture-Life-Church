@@ -1,59 +1,149 @@
 @import "tailwindcss";
-:root {
-  --color-primary: #1a531a; /* Deep Forest Green (Dominant) */
-  --color-secondary: #6aa84f; /* Bright Lime Green (Accent) */
-  --color-accent: #f3f4f6; /* Light Gray (Background/Contrast) */
 
-  /* Map the variables to Tailwind's utility properties */
-  --color-text-primary: var(--color-primary);
-  --color-background-primary: var(--color-primary);
-  --color-text-secondary: var(--color-secondary);
-  --color-background-secondary: var(--color-secondary);
+/* ─────────────────────────────────────────────────────────────
+   "Quiet Pasture" design tokens (Tailwind v4 @theme)
+   Grounded in the church name + Psalm 23: green pastures,
+   quiet waters, harvest gold, morning light.
+   Generates utilities: bg-pasture, text-wheat, font-display, etc.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --color-canvas: #fbfaf4; /* warm morning-light paper (base) */
+  --color-pasture: #1e4d2b; /* deep pasture green (primary) */
+  --color-pasture-700: #173e22; /* darker pasture for hovers */
+  --color-meadow: #6aa84f; /* living mid-green */
+  --color-meadow-300: #9cc47e; /* soft green */
+  --color-moss: #0f2e1a; /* darkest green (footer / deep bands) */
+  --color-wheat: #c8a24b; /* harvest-gold accent */
+  --color-wheat-300: #e0c581; /* light gold */
+  --color-mist: #e7efe1; /* pale green section background */
+  --color-ink: #1a2419; /* green-tinted near-black text */
+  --color-stone: #5b6b58; /* muted green-gray for secondary text */
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Figtree", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Soft, shallow cathedral arch — elliptical top, gently rounded base */
+  --radius-arch: 48% 48% 1.25rem 1.25rem / 30% 30% 1.25rem 1.25rem;
 }
+
+:root {
+  /* Legacy aliases kept so any stray references still resolve */
+  --color-primary: #1e4d2b;
+  --color-secondary: #6aa84f;
+  --color-accent: #c8a24b;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
 
-  /* Font Family */
-  font-family: "Inter", sans-serif !important;
-
-  background-color: white;
-  color: #374151;
+  font-family: var(--font-sans);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
   overflow-x: hidden;
 
-  /* 🔧 FIX: Prevent overscroll/bounce effect */
+  /* Prevent overscroll/bounce effect */
   overscroll-behavior: none;
   overscroll-behavior-y: none;
 
-  /* Ensure full height */
   height: 100%;
   width: 100%;
 
-  /* Prevent iOS Safari bounce */
+  /* Prevent iOS Safari bounce — scrolling lives on #root */
   position: fixed;
   overflow: hidden;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Allow scrolling in the main content area */
+/* Scrollable content area */
 #root {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: none;
+  scroll-behavior: smooth;
 }
 
-/* Alternative solution if the above doesn't work */
-/* Uncomment if needed */
-/*
-body {
-  position: relative;
-  overflow: auto;
-  overscroll-behavior-y: contain;
+/* Display face: tighten optical sizing for a warm, reverent tone */
+.font-display,
+h1,
+h2,
+h3 {
+  font-optical-sizing: auto;
 }
-*/
 
-.clr-primary {
-  color: var(--color-text-primary);
+/* Selection + focus */
+::selection {
+  background: var(--color-wheat);
+  color: var(--color-moss);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-wheat);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Tracked uppercase eyebrow helper */
+.eyebrow {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+/* Cathedral arch image frame */
+.arch {
+  border-radius: var(--radius-arch);
+  overflow: hidden;
+}
+
+/* Ambient "quiet waters" drift for the horizon motif */
+@keyframes pasture-drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-1.5%);
+  }
+}
+.animate-drift {
+  animation: pasture-drift 14s ease-in-out infinite;
+}
+
+@keyframes sun-breathe {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+.animate-sun {
+  animation: sun-breathe 8s ease-in-out infinite;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  #root {
+    scroll-behavior: auto;
+  }
 }

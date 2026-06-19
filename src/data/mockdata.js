@@ -26,9 +26,59 @@ export const churchInfo = {
   },
 };
 
+// ── Online giving ─────────────────────────────────────────────
+// TODO: Replace the placeholder accountName / accountNumber values with the
+// church's real details, and drop the QR images into /public/give/
+// (gcash-qr.png, bdo-qr.png). Until an image exists the card shows a
+// "QR coming soon" placeholder automatically.
+export const givingMethods = [
+  {
+    id: "gcash",
+    name: "GCash",
+    badge: "e-Wallet",
+    accountName: "Green Pasture Life Church",
+    accountNumber: "0917 XXX XXXX",
+    qr: "/give/gcash-qr.png",
+    note: "Scan with the GCash app, or send to the number above.",
+  },
+  {
+    id: "bdo",
+    name: "BDO",
+    badge: "Bank Transfer",
+    accountName: "Green Pasture Life Church Inc.",
+    accountNumber: "0000 0000 0000",
+    qr: "/give/bdo-qr.png",
+    note: "BDO Savings Account. Scan via the BDO app or use the account number.",
+  },
+];
+
+export const serviceSchedule = [
+  {
+    day: "Sundays",
+    time: "8:30 AM – 10:00 AM",
+    label: "Worship Celebration",
+  },
+  {
+    day: "Sundays",
+    time: "10:00 AM – 10:30 AM",
+    label: "Care Group Gathering",
+  },
+  {
+    day: "Wednesday",
+    time: "6:00 PM – 7:00 PM",
+    label: "Prayer Gathering",
+  },
+  {
+    day: "Friday",
+    time: "5:00 PM – 7:00 PM",
+    label: "Youth GIG (Twice a Month)",
+  },
+];
+
 export const ministries = [
   {
     id: 1,
+    slug: "mens-ministry",
     title: "Men's Ministry",
     description:
       "Empowering men to grow in their relationship with God, lead their families with integrity, and serve the church and community through faith, discipleship, and brotherhood.",
@@ -40,6 +90,7 @@ export const ministries = [
   },
   {
     id: 2,
+    slug: "womens-ministry",
     title: "Women's Ministry",
     description:
       "A sisterhood of grace, gathering for bible study, prayer, and mutual encouragement.",
@@ -51,6 +102,7 @@ export const ministries = [
   },
   {
     id: 3,
+    slug: "youth-ministry",
     title: "Youth Ministry",
     description:
       "Guiding the next generation to know Christ personally, grow spiritually, and live out their faith with confidence.",
@@ -62,6 +114,7 @@ export const ministries = [
   },
   {
     id: 4,
+    slug: "worship-team",
     title: "Worship Team",
     description:
       "Leading the congregation into a life-changing encounter with God through heartfelt worship, blending contemporary and traditional music that glorifies His name.",
@@ -73,6 +126,7 @@ export const ministries = [
   },
   {
     id: 5,
+    slug: "outreach-ministry",
     title: "Outreach Ministry",
     description:
       "Serving the community through acts of love — feeding programs, meeting practical needs, establishing house churches, supporting missions, and bringing the light of Christ to our local communities.",
@@ -84,6 +138,7 @@ export const ministries = [
   },
   {
     id: 6,
+    slug: "connect-ministry",
     title: "Connect Ministry",
     description:
       "Helping people build meaningful relationships and grow together in Christ through fellowship, care, and spiritual connection.",
@@ -96,6 +151,7 @@ export const ministries = [
   },
   {
     id: 7,
+    slug: "kids-ministry",
     title: "Kids Ministry",
     description:
       "Helping children know Jesus, grow in faith, and experience God's love in a fun, safe, and nurturing environment.",
@@ -107,6 +163,7 @@ export const ministries = [
   },
   {
     id: 8,
+    slug: "servants-on-service",
     title: "Servants on Service (SOS)",
     description:
       "Serving with Christ-like compassion, supporting missions, and bringing the transforming light of Christ to our community through meaningful acts of love.",
@@ -122,6 +179,7 @@ export const ministries = [
 export const events = [
   {
     id: 1,
+    slug: "sunday-worship-service",
     title: "Sunday Worship Service",
     date: "Every Sunday – 8:30 AM",
     category: "Worship",
@@ -131,6 +189,7 @@ export const events = [
   },
   {
     id: 2,
+    slug: "prayer-gathering",
     title: "Prayer Gathering",
     date: "Every Wednesday – 6:00 PM",
     category: "Prayer",
@@ -140,6 +199,7 @@ export const events = [
   },
   {
     id: 3,
+    slug: "care-group-gathering",
     title: "Care Group Gathering",
     date: "Every Sunday – 10:00 AM",
     category: "Fellowship",
@@ -149,6 +209,7 @@ export const events = [
   },
   {
     id: 4,
+    slug: "youth-gathering",
     title: "Youth Gathering",
     date: "Friday (Twice a Month) – 5:00 PM",
     category: "Youth",

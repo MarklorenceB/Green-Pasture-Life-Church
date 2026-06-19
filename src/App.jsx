@@ -8,6 +8,7 @@ import Ministries from "./pages/Ministries";
 import Events from "./pages/Events";
 import EventDetails from "./pages/EventDetails";
 import Contact from "./pages/Contact";
+import Give from "./pages/Give";
 
 // ScrollToTop component to ensure pages start at the top on navigation
 import { useEffect } from "react";
@@ -33,10 +34,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/ministries" element={<Ministries />} />
-          <Route path="/ministries/:id" element={<MinistryDetail />} />
+          <Route path="/ministries/:slug" element={<MinistryDetail />} />
           <Route path="/leaders" element={<Leaders />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/events/:id" element={<EventDetails />} />
+          <Route path="/events/:slug" element={<EventDetails />} />
+          <Route path="/give" element={<Give />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>

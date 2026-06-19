@@ -1,329 +1,145 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import React from "react";
+import { churchInfo } from "../data/mockdata";
+import PageHero from "../components/PageHero";
+import Reveal from "../components/Reveal";
+import Eyebrow from "../components/Eyebrow";
 import heroBg from "../assets/image.png";
 
-// Color Palette Variables: Primary: #1a531a (Deep Forest Green), Secondary: #6aa84f (Bright Lime Green)
-
-// Mock Data updated with user's provided information
-const churchInfo = {
-  name: "Green Pasture Life Church",
-  tagline: "The Lord is my shepherd, I lack nothing.",
-  email: "rueldelmonte4@gmail.com",
-  phone: "049-557-5188",
-  phone2: "0927-938-4441",
-  address:
-    "Sitio Ilaya, Barangay Santisimo Rosario, San Pablo City, Laguna 4000, Philippines",
-  socials: {
-    facebook: "https://facebook.com",
-    youtube: "https://youtube.com",
-    instagram: "https://instagram.com",
+const contactItems = [
+  {
+    Icon: MapPin,
+    title: "Visit Us",
+    lines: [churchInfo.address],
   },
-};
+  {
+    Icon: Phone,
+    title: "Call Us",
+    lines: [churchInfo.phone, churchInfo.phone2],
+  },
+  {
+    Icon: Mail,
+    title: "Email Us",
+    lines: [churchInfo.email],
+  },
+  {
+    Icon: Clock,
+    title: "Office Hours",
+    lines: ["Tuesday – Friday", "9:00 AM – 4:00 PM"],
+  },
+];
+
+const fieldClass =
+  "w-full px-4 py-3 rounded-xl border border-mist bg-canvas text-ink outline-none transition focus:border-meadow focus:ring-2 focus:ring-meadow/30";
 
 const Contact = () => {
   const form = useRef(null);
-  const [status, setStatus] = useState(""); // 'sending', 'success', 'error'
+  const [status, setStatus] = useState("");
 
   const sendEmail = (e) => {
     e.preventDefault();
     setStatus("sending");
-
-    // --- REAL-WORLD EMAIL INTEGRATION NOTE ---
-    // If you were using a service like EmailJS, you would uncomment the block below
-    // and provide your service credentials. Since external libraries cannot be
-    // guaranteed to load in this environment, we use a simulation.
-
-    /*
-    const serviceID = "YOUR_SERVICE_ID";
-    const templateID = "YOUR_TEMPLATE_ID";
-    const publicKey = "YOUR_PUBLIC_KEY";
-
-    emailjs.sendForm(serviceID, templateID, form.current, publicKey).then(
-      () => {
-        setStatus("success");
-        if (form.current) form.current.reset();
-        setTimeout(() => setStatus(""), 4000); 
-      },
-      (error) => {
-        console.error("EmailJS Error:", error);
-        setStatus("error");
-        setTimeout(() => setStatus(""), 4000); 
-      }
-    );
-    */
-
-    // --- SIMULATION FOR LOCAL TESTING ---
+    // Simulated submission — no email is actually delivered.
     setTimeout(() => {
-      // Logic for successful simulation
       setStatus("success");
-      if (form.current) {
-        form.current.reset();
-      }
-
-      // Clear status after a short delay so the user can submit again
+      if (form.current) form.current.reset();
       setTimeout(() => setStatus(""), 4000);
-    }, 1500); // Simulate 1.5 second network delay
+    }, 1500);
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      {/* HERO BANNER */}
-      <section
-        className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] bg-cover bg-center flex items-center justify-center text-center px-4"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.45)), url("${heroBg}")`,
-        }}
-      >
-        <div className="relative z-10 text-white">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
-            Get in Touch
-          </h1>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl opacity-90 max-w-3xl mx-auto">
-            We would love to hear from you! Whether you have a prayer request,
-            questions about our ministry, or simply want to connect.
-          </p>
-        </div>
-      </section>
+    <div className="bg-canvas">
+      <PageHero
+        eyebrow="Reach Out"
+        title="Get in touch"
+        subtitle="Whether you have a prayer request, a question about our ministry, or simply want to connect — we would love to hear from you."
+        image={heroBg}
+      />
 
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div className="md:pr-12">
-            <h1
-              className="text-4xl font-bold mb-6"
-              style={{ color: "#1a531a" }}
-            >
-              Get in Touch
-            </h1>
-            <p className="text-gray-600 mb-10 text-lg leading-relaxed">
-              We would love to hear from you! Whether you have a prayer
-              request, questions about our ministry, or simply want to
-              connect, feel free to reach out.
-            </p>
-
-            <div className="space-y-8">
-              {/* Visit Us */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="p-3 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: "#6aa84f1A", color: "#1a531a" }} // Light Secondary Background
-                >
-                  <MapPin size={24} />
-                </div>
-                <div>
-                  <h3
-                    className="font-bold text-lg"
-                    style={{ color: "#1a531a" }}
-                  >
-                    Visit Us
-                  </h3>
-                  <p className="text-gray-600">{churchInfo.address}</p>
-                </div>
-              </div>
-
-              {/* Call Us */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="p-3 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: "#6aa84f1A", color: "#1a531a" }}
-                >
-                  <Phone size={24} />
-                </div>
-                <div>
-                  <h3
-                    className="font-bold text-lg"
-                    style={{ color: "#1a531a" }}
-                  >
-                    Call Us
-                  </h3>
-                  <p className="text-gray-600">{churchInfo.phone}</p>
-                  <p className="text-gray-600">{churchInfo.phone2}</p>
-                </div>
-              </div>
-
-              {/* Email Us */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="p-3 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: "#6aa84f1A", color: "#1a531a" }}
-                >
-                  <Mail size={24} />
-                </div>
-                <div>
-                  <h3
-                    className="font-bold text-lg"
-                    style={{ color: "#1a531a" }}
-                  >
-                    Email Us
-                  </h3>
-                  <p className="text-gray-600">{churchInfo.email}</p>
-                </div>
-              </div>
-
-              {/* Office Hours */}
-              <div className="flex items-start gap-4">
-                <div
-                  className="p-3 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: "#6aa84f1A", color: "#1a531a" }}
-                >
-                  <Clock size={24} />
-                </div>
-                <div>
-                  <h3
-                    className="font-bold text-lg"
-                    style={{ color: "#1a531a" }}
-                  >
-                    Office Hours
-                  </h3>
-                  <p className="text-gray-600">Tuesday – Friday</p>
-                  <p className="text-gray-600">9:00 AM – 4:00 PM</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
-            <h2
-              className="text-3xl font-bold mb-8"
-              style={{ color: "#1a531a" }}
-            >
-              Send a Message
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-16 md:py-24">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Contact info */}
+          <Reveal>
+            <Eyebrow>We&apos;re Here for You</Eyebrow>
+            <h2 className="mt-4 font-display font-light text-pasture text-3xl sm:text-4xl mb-8">
+              Come as you are
             </h2>
+            <div className="space-y-6">
+              {contactItems.map(({ Icon, title, lines }) => (
+                <div key={title} className="flex items-start gap-4">
+                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-mist flex-shrink-0">
+                    <Icon size={22} className="text-pasture" />
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-pasture text-lg">{title}</h3>
+                    {lines.map((l, i) => (
+                      <p key={i} className="text-stone leading-relaxed break-words">
+                        {l}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
 
-            <form ref={form} onSubmit={sendEmail} className="space-y-6">
-              {/* Full Name */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  name="user_name"
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none transition duration-150"
-                  placeholder="John Doe"
-                  // Use style to handle focus for the green accent
-                  onFocus={(e) => {
-                    e.target.style.borderColor = "#6aa84f";
-                    e.target.style.boxShadow = "0 0 0 2px #6aa84f";
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = "#d1d5db";
-                    e.target.style.boxShadow = "none";
-                  }}
-                />
-              </div>
-
-              {/* Email Address */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="user_email"
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none transition duration-150"
-                  placeholder="john@example.com"
-                  // Use style to handle focus for the green accent
-                  onFocus={(e) => {
-                    e.target.style.borderColor = "#6aa84f";
-                    e.target.style.boxShadow = "0 0 0 2px #6aa84f";
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = "#d1d5db";
-                    e.target.style.boxShadow = "none";
-                  }}
-                />
-              </div>
-
-              {/* Phone (Optional) */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Phone (Optional)
-                </label>
-                <input
-                  type="tel"
-                  name="user_phone"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none transition duration-150"
-                  placeholder="(555) 123-4567"
-                  // Use style to handle focus for the green accent
-                  onFocus={(e) => {
-                    e.target.style.borderColor = "#6aa84f";
-                    e.target.style.boxShadow = "0 0 0 2px #6aa84f";
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = "#d1d5db";
-                    e.target.style.boxShadow = "none";
-                  }}
-                />
-              </div>
-
-              {/* Message */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  required
-                  rows="4"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none transition duration-150"
-                  placeholder="How can we help you?"
-                  // Use style to handle focus for the green accent
-                  onFocus={(e) => {
-                    e.target.style.borderColor = "#6aa84f";
-                    e.target.style.boxShadow = "0 0 0 2px #6aa84f";
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = "#d1d5db";
-                    e.target.style.boxShadow = "none";
-                  }}
-                ></textarea>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="w-full text-white font-bold py-3 rounded-lg transition duration-300 shadow-md disabled:opacity-50"
-                style={{
-                  backgroundColor: "#1a531a", // Deep Forest Green
-                  transition: "background-color 0.3s",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor =
-                    status !== "sending" ? "#6aa84f" : "#1a531a")
-                } // Hover to Bright Lime Green only if not sending
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#1a531a")
-                } // Reset
-              >
-                {status === "sending" ? "Sending..." : "Send Message"}
-              </button>
-
-              {/* Status Messages */}
-              {status === "success" && (
-                <div
-                  className="p-4 rounded-lg font-medium"
-                  style={{ backgroundColor: "#6aa84f1A", color: "#1a531a" }}
+          {/* Form */}
+          <Reveal delay={0.1}>
+            <div className="bg-mist/50 border border-mist rounded-3xl p-7 sm:p-9">
+              <h2 className="font-display text-2xl sm:text-3xl text-pasture mb-7">
+                Send a message
+              </h2>
+              <form ref={form} onSubmit={sendEmail} className="space-y-5">
+                <div>
+                  <label className="block text-sm font-medium text-ink/70 mb-1.5">
+                    Full Name
+                  </label>
+                  <input type="text" name="user_name" required placeholder="Juan dela Cruz" className={fieldClass} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-ink/70 mb-1.5">
+                    Email Address
+                  </label>
+                  <input type="email" name="user_email" required placeholder="juan@example.com" className={fieldClass} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-ink/70 mb-1.5">
+                    Phone <span className="text-stone/60">(optional)</span>
+                  </label>
+                  <input type="tel" name="user_phone" placeholder="0927 938 4441" className={fieldClass} />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-ink/70 mb-1.5">
+                    Message
+                  </label>
+                  <textarea name="message" required rows="4" placeholder="How can we pray for you, or help you connect?" className={fieldClass} />
+                </div>
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="w-full bg-pasture text-canvas font-semibold py-3.5 rounded-full hover:bg-meadow transition-colors disabled:opacity-50"
                 >
-                  Message sent successfully! We will get back to you soon.
-                </div>
-              )}
-              {status === "error" && (
-                <div className="p-4 bg-red-100 text-red-700 rounded-lg font-medium">
-                  Something went wrong. Please try again later.
-                </div>
-              )}
-            </form>
-          </div>
+                  {status === "sending" ? "Sending…" : "Send Message"}
+                </button>
+
+                {status === "success" && (
+                  <div className="p-4 rounded-xl bg-meadow/15 text-pasture font-medium text-sm">
+                    Thank you! Your message has been received — we&apos;ll be in
+                    touch soon.
+                  </div>
+                )}
+                {status === "error" && (
+                  <div className="p-4 rounded-xl bg-red-100 text-red-700 font-medium text-sm">
+                    Something went wrong. Please try again later.
+                  </div>
+                )}
+              </form>
+            </div>
+          </Reveal>
         </div>
 
-        {/* Google Maps Embed Placeholder */}
-        <div className="mt-16 rounded-xl overflow-hidden shadow-2xl h-96">
+        {/* Map */}
+        <Reveal className="mt-16 rounded-3xl overflow-hidden shadow-xl border border-mist h-96">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15485.169769367923!2d121.29309396008247!3d14.000666153023998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd43cb29a03635%3A0x49006a6c62527cd0!2sSantisimo%20Rosario%2C%20San%20Pablo%20City%2C%20Laguna!5e0!3m2!1sen!2sph!4v1764676848300!5m2!1sen!2sph"
             width="100%"
@@ -332,9 +148,9 @@ const Contact = () => {
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Church Location Map"
-          ></iframe>
-        </div>
+            title="Green Pasture Life Church location map"
+          />
+        </Reveal>
       </div>
     </div>
   );
