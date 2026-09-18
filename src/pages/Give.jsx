@@ -157,7 +157,7 @@ const Give = () => {
             <h2 className="type-heading mt-6 text-pasture max-w-xl">Where your gift goes</h2>
             <p className="type-body mt-6 text-stone max-w-lg">
               Every gift helps us love and care for people so they may experience
-              God's salvation through Jesus Christ — here in San Pablo City and
+              God's salvation through Jesus Christ, here in San Pablo City and
               beyond.
             </p>
           </Reveal>

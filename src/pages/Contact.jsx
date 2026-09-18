@@ -49,7 +49,7 @@ const Contact = () => {
       <PageHero
         eyebrow="Reach Out"
         title="Get in touch"
-        subtitle="Whether you have a prayer request, a question about our ministry, or simply want to connect — we would love to hear from you."
+        subtitle="Whether you have a prayer request, a question about our ministry, or simply want to connect, we would love to hear from you."
         image={heroBg}
         ratio="1 / 1"
       />
@@ -102,7 +102,7 @@ const Contact = () => {
 
                 {status === "success" && (
                   <div role="status" className="rounded-xl bg-canvas p-4 text-sm font-medium text-pasture">
-                    Thank you! Your message has been received — we&apos;ll be in
+                    Thank you! Your message has been received, we&apos;ll be in
                     touch soon.
                   </div>
                 )}

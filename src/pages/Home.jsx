@@ -48,7 +48,7 @@ const Home = () => {
               <span className="block">I lack nothing.</span>
             </h1>
             <p className="type-body max-w-lg text-canvas/90">
-              Green Pasture Life Church — a family in San Pablo City, Laguna,
+              Green Pasture Life Church, a family in San Pablo City, Laguna,
               growing together in the grace of Jesus Christ.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8">

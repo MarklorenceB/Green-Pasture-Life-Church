@@ -129,7 +129,7 @@ export const ministries = [
     slug: "outreach-ministry",
     title: "Outreach Ministry",
     description:
-      "Serving the community through acts of love — feeding programs, meeting practical needs, establishing house churches, supporting missions, and bringing the light of Christ to our local communities.",
+      "Serving the community through acts of love: feeding programs, meeting practical needs, establishing house churches, supporting missions, and bringing the light of Christ to our local communities.",
     image: outreach,
     fullContent:
       "The Outreach Ministry is committed to demonstrating God's love through practical service and evangelism. Through feeding programs, community support, and mission activities, we reach out to those in need and share the Gospel of Jesus Christ.\n\nIn line with our mission to love and care for people so they may experience God's salvation through Jesus Christ, we aim to bring hope, compassion, and spiritual transformation in our community and beyond.\n\nOur ministry helps establish house churches, supports mission work, and organizes evangelistic gatherings and crusades to bring more people into a growing relationship with Christ.\n\nWe welcome all new members! Our ministry is driven by compassion, faith, and a desire to serve God by serving others.\n\nPlease contact the coordinator for details on how to get involved.",

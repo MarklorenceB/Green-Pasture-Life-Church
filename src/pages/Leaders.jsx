@@ -88,7 +88,7 @@ const Leaders = () => {
             <p className="eyebrow text-pasture">{pastor.role}</p>
             <h3 className="type-heading mt-6 max-w-lg text-pasture">{pastor.name}</h3>
             <p className="type-body mt-8 max-w-md text-stone">
-              Providing guidance, support, and spiritual oversight — nurturing
+              Providing guidance, support, and spiritual oversight, nurturing
               disciples and helping the church fulfill its mission of reaching
               people for Christ.
             </p>

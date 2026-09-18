@@ -82,13 +82,13 @@ const About = () => {
           <Reveal className="lg:col-span-7 lg:col-start-6 lg:row-start-1">
             <Eyebrow>A Word from Pastor Ruel</Eyebrow>
             <blockquote className="mt-8 text-pasture text-[clamp(1.625rem,2.5vw,2.25rem)] leading-[1.3] font-medium tracking-[-0.035em]">
-              “I believe the church is more than a building — it is a family. Our
+              “I believe the church is more than a building, it is a family. Our
               desire is to bring people to Christ, nurture them in His Word, and
               equip them to become fully trained disciples who will serve God
               faithfully in every season of life.”
             </blockquote>
             <p className="type-body text-stone mt-8 max-w-[60ch]">
-              2 Timothy 2:2 — “And the things you have heard me say in the
+              2 Timothy 2:2: “And the things you have heard me say in the
               presence of many witnesses entrust to reliable people who will also
               be qualified to teach others.”
             </p>
@@ -109,7 +109,7 @@ const About = () => {
                 through Jesus Christ.”
               </blockquote>
               <p className="type-body text-stone mt-8 max-w-[58ch]">
-                Romans 5:8 — “But God demonstrates His own love for us in this:
+                Romans 5:8: “But God demonstrates His own love for us in this:
                 While we were still sinners, Christ died for us.”
               </p>
             </div>
@@ -123,7 +123,7 @@ const About = () => {
                 families, communities, and to the <em className="type-emphasis">whole world.</em>”
               </blockquote>
               <p className="type-body text-stone mt-8 max-w-[58ch]">
-                Acts 1:8 — “You will be My witnesses in Jerusalem, in all Judea and
+                Acts 1:8: “You will be My witnesses in Jerusalem, in all Judea and
                 Samaria, and to the ends of the earth.”
               </p>
             </div>
