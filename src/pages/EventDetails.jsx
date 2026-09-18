@@ -1,9 +1,12 @@
-import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { events } from "../data/mockdata";
-import { ArrowLeft, Calendar, Tag, MapPin, ArrowRight } from "lucide-react";
+import { ArrowLeft, Tag, MapPin, ArrowRight } from "lucide-react";
 import Reveal from "../components/Reveal";
 import Eyebrow from "../components/Eyebrow";
+import Container from "../components/Container";
+import Section from "../components/Section";
+import MediaPanel from "../components/MediaPanel";
+import Button from "../components/Button";
 
 const EventDetails = () => {
   const { slug } = useParams();
@@ -11,87 +14,70 @@ const EventDetails = () => {
 
   if (!event) {
     return (
-      <div className="min-h-screen bg-canvas flex flex-col items-center justify-center text-center px-5">
-        <h1 className="font-display text-3xl text-pasture">Event not found</h1>
-        <p className="mt-4 text-stone">The event you are looking for does not exist.</p>
-        <Link
-          to="/events"
-          className="mt-8 inline-flex items-center gap-2 font-semibold text-meadow hover:text-pasture transition-colors"
-        >
-          <ArrowLeft size={18} /> Back to all events
-        </Link>
+      <div className="min-h-screen bg-moss text-canvas flex items-center pt-[var(--header-height)] pb-20">
+        <Container>
+          <h1 className="type-title">Event not found</h1>
+          <p className="type-body mt-6 text-mist">The event you are looking for does not exist.</p>
+          <Button to="/events" variant="on-dark" className="mt-6 md:mt-8">
+            <ArrowLeft size={18} aria-hidden="true" /> Back to all events
+          </Button>
+        </Container>
       </div>
     );
   }
 
+  const [day, time] = (event.date || "TBD").split(" – ");
+
   return (
-    <div className="bg-canvas">
-      {/* Article-style hero */}
-      <header className="relative h-[56vh] min-h-[24rem] overflow-hidden bg-moss">
-        <img
-          src={event.image}
-          alt={event.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-moss via-moss/55 to-moss/20" />
-        <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 h-full flex flex-col">
-          <div className="pt-24 sm:pt-28">
-            <Link
-              to="/events"
-              className="inline-flex items-center gap-2 text-canvas/80 hover:text-wheat transition-colors text-sm font-medium"
-            >
-              <ArrowLeft size={17} /> All events
-            </Link>
-          </div>
-          <div className="mt-auto pb-10 max-w-3xl">
-            <Eyebrow tone="light">{event.category || "Gathering"}</Eyebrow>
-            <h1 className="mt-4 font-display font-light text-canvas text-4xl sm:text-5xl md:text-6xl leading-[1.05]">
-              {event.title}
-            </h1>
-          </div>
-        </div>
-      </header>
-
-      <div className="max-w-3xl mx-auto px-5 sm:px-8 py-14 md:py-20">
-        {/* Key info */}
-        <Reveal className="flex flex-wrap gap-3 mb-10">
-          <span className="inline-flex items-center gap-2 bg-mist text-pasture font-semibold text-sm px-4 py-2 rounded-full">
-            <Calendar size={16} className="text-wheat" /> {event.date || "TBD"}
-          </span>
-          <span className="inline-flex items-center gap-2 bg-mist text-pasture font-semibold text-sm px-4 py-2 rounded-full">
-            <Tag size={16} className="text-wheat" /> {event.category || "General"}
-          </span>
-          <span className="inline-flex items-center gap-2 bg-mist text-pasture font-semibold text-sm px-4 py-2 rounded-full">
-            <MapPin size={16} className="text-wheat" /> Church Campus
-          </span>
-        </Reveal>
-
-        {/* Content */}
-        <Reveal delay={0.05}>
-          {event.content.split("\n\n").map((para, i) => (
-            <p key={i} className="text-ink/75 text-lg leading-relaxed mb-5">
-              {para}
-            </p>
-          ))}
-        </Reveal>
-
-        {/* CTA */}
-        <Reveal delay={0.1} className="mt-12 pt-10 border-t border-mist text-center">
-          <h3 className="font-display text-2xl sm:text-3xl text-pasture mb-3">
-            We&apos;d love to see you there
-          </h3>
-          <p className="text-stone mb-7 max-w-md mx-auto">
-            New to Green Pasture Life Church? Let us know you&apos;re coming and
-            we&apos;ll help you find your way.
-          </p>
+    <div className="flex flex-col bg-canvas">
+      <Section as="header" bleed className="order-1 bg-moss text-canvas pt-[calc(var(--header-height)+1rem)] md:pt-[calc(var(--header-height)+2rem)] pb-8 md:pb-0">
+        <Container>
           <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-pasture text-canvas font-semibold py-3.5 px-7 rounded-full hover:bg-meadow transition-colors"
+            to="/events"
+            className="inline-flex min-h-11 items-center gap-3 text-sm font-medium text-mist hover:text-canvas rounded-sm"
           >
-            Plan your visit <ArrowRight size={18} />
+            <ArrowLeft size={17} aria-hidden="true" /> All events
           </Link>
-        </Reveal>
-      </div>
+          <div className="mt-6 grid gap-8 md:mt-8 lg:mt-10 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:gap-20">
+            <div>
+              <Eyebrow tone="light">{event.category || "Gathering"}</Eyebrow>
+              <h1 className="type-title mt-6 max-w-3xl lg:text-[clamp(3rem,6vw,5.5rem)]">{event.title}</h1>
+            </div>
+            <div className="min-w-0">
+              <p className="font-serif font-normal text-mist">
+                <span className="block text-[clamp(1.5rem,2.3vw,2rem)] leading-tight tracking-[-0.035em]">{day}</span>{" "}
+                {time && <span className="mt-2 block text-[clamp(3.5rem,5.5vw,5rem)] leading-[1.1] tracking-[-0.055em] tabular-nums"><span className="text-wheat-300 text-subheading">–</span>{" "}{time}</span>}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 font-mono text-xs text-mist">
+                <span className="inline-flex items-center gap-2"><Tag size={16} aria-hidden="true" className="text-wheat-300" /> {event.category || "General"}</span>
+                <span className="inline-flex items-center gap-2"><MapPin size={16} aria-hidden="true" className="text-wheat-300" /> Church Campus</span>
+              </div>
+              <Button to="/contact" variant="on-dark" className="mt-6 md:mt-8">
+                Plan your visit <ArrowRight size={18} aria-hidden="true" />
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section as="div" className="order-3 pt-0 pb-12 md:order-2 md:bg-moss md:pt-12 md:pb-16">
+        <MediaPanel src={event.image} alt={event.title} ratio="16 / 9" loading="eager" className="[&_img]:aspect-[4/3] md:[&_img]:aspect-[21/9]" />
+      </Section>
+
+      <Section compact className="order-2 pt-8 md:order-3 md:pt-20">
+        <div className="grid gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
+          <Reveal className="type-body space-y-6 text-stone">
+            {event.content.split("\n\n").map((para, i) => <p key={i}>{para}</p>)}
+          </Reveal>
+          <Reveal delay={0.065} className="rounded-panel bg-mist p-8 md:p-12 self-start">
+            <h2 className="type-subheading text-pasture">We&apos;d love to see you there</h2>
+            <p className="type-body mt-6 text-stone">
+              New to Green Pasture Life Church? Let us know you&apos;re coming and
+              we&apos;ll help you find your way.
+            </p>
+          </Reveal>
+        </div>
+      </Section>
     </div>
   );
 };

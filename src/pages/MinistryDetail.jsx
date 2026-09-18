@@ -1,9 +1,12 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ministries } from "../data/mockdata";
 import { ArrowLeft, Clock, User, Mail } from "lucide-react";
 import Reveal from "../components/Reveal";
 import Eyebrow from "../components/Eyebrow";
+import Container from "../components/Container";
+import Section from "../components/Section";
+import MediaPanel from "../components/MediaPanel";
+import Button from "../components/Button";
 
 const MinistryDetail = () => {
   const { slug } = useParams();
@@ -13,88 +16,87 @@ const MinistryDetail = () => {
 
   if (!ministry) {
     return (
-      <div className="min-h-screen bg-canvas flex flex-col items-center justify-center text-center px-5">
-        <h1 className="font-display text-3xl text-pasture">Ministry not found</h1>
-        <p className="mt-4 text-stone">
-          The ministry you are looking for does not exist or the link is
-          incorrect.
-        </p>
-        <Link
-          to="/ministries"
-          className="mt-8 inline-flex items-center gap-2 font-semibold text-meadow hover:text-pasture transition-colors"
-        >
-          <ArrowLeft size={18} /> Back to all ministries
-        </Link>
+      <div className="min-h-screen bg-canvas flex flex-col justify-center pt-[var(--header-height)]">
+        <Container className="py-20">
+          <h1 className="type-title max-w-3xl text-pasture">Ministry not found</h1>
+          <p className="type-body mt-6 max-w-xl text-stone">
+            The ministry you are looking for does not exist or the link is
+            incorrect.
+          </p>
+          <Button to="/ministries" variant="secondary" className="mt-8">
+            <ArrowLeft size={18} aria-hidden="true" /> Back to all ministries
+          </Button>
+        </Container>
       </div>
     );
   }
 
   return (
     <div className="bg-canvas">
-      {/* Article-style hero */}
-      <header className="relative h-[58vh] min-h-[26rem] overflow-hidden bg-moss">
-        <img
-          src={ministry.image}
-          alt={ministry.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-moss via-moss/55 to-moss/20" />
-        <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-8 h-full flex flex-col">
-          <div className="pt-24 sm:pt-28">
-            <Link
-              to="/ministries"
-              className="inline-flex items-center gap-2 text-canvas/80 hover:text-wheat transition-colors text-sm font-medium"
-            >
-              <ArrowLeft size={17} /> All ministries
-            </Link>
-          </div>
-          <div className="mt-auto pb-10 max-w-3xl">
-            <Eyebrow tone="light">Ministry</Eyebrow>
-            <h1 className="mt-4 font-display font-light text-canvas text-4xl sm:text-5xl md:text-6xl leading-[1.05]">
-              {ministry.title}
-            </h1>
-            <p className="mt-5 font-serif italic text-meadow-300/90 text-lg sm:text-xl leading-relaxed">
+      <header className="bg-moss pb-8 pt-[calc(var(--header-height)+2rem)] text-canvas md:pb-16 md:pt-[calc(var(--header-height)+3rem)]">
+        <Container>
+          <Button
+            to="/ministries"
+            variant="outline-on-dark"
+          >
+            <ArrowLeft size={18} aria-hidden="true" /> All ministries
+          </Button>
+          <div className="mt-8 grid gap-6 md:mt-12 md:grid-cols-12 md:items-end md:gap-12">
+            <div className="min-w-0 md:col-span-7">
+              <Eyebrow tone="light">Ministry</Eyebrow>
+              <h1 className="type-title mt-6">{ministry.title}</h1>
+            </div>
+            <p className="type-body max-w-xl text-mist md:col-span-5 md:pb-1">
               {ministry.description}
             </p>
           </div>
-        </div>
+          <MediaPanel
+            src={ministry.image}
+            alt={ministry.title}
+            loading="eager"
+            ratio="16 / 7"
+            className="mt-10 [&_img]:aspect-[4/3] md:mt-16 md:[&_img]:aspect-[16/7]"
+          />
+        </Container>
       </header>
 
-      <div className="max-w-5xl mx-auto px-5 sm:px-8 py-14 md:py-20">
-        {/* Details */}
-        <Reveal className="grid sm:grid-cols-2 gap-5 mb-12">
-          <div className="flex items-start gap-4 bg-mist rounded-2xl p-6">
-            <User size={22} className="text-meadow flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="eyebrow text-wheat mb-1">Coordinator</p>
-              <p className="text-ink/80">{ministry.coordinator || "Church Office"}</p>
+      <Section compact>
+        <div className="space-y-8 md:space-y-12">
+          <Reveal>
+            <dl className="grid gap-8 rounded-panel bg-mist p-6 md:grid-cols-2 md:gap-16 md:p-8">
+              <div>
+                <dt className="eyebrow flex items-center gap-3 text-pasture">
+                  <User size={20} aria-hidden="true" /> Coordinator
+                </dt>
+                <dd className="type-body mt-4 font-semibold text-pasture">
+                  {ministry.coordinator || "Church Office"}
+                </dd>
+              </div>
+              <div>
+                <dt className="eyebrow flex items-center gap-3 text-pasture">
+                  <Clock size={20} aria-hidden="true" /> Meeting Time
+                </dt>
+                <dd className="type-body mt-4 text-ink">
+                  {ministry.meetingTime || "See church calendar"}
+                </dd>
+              </div>
+            </dl>
+          </Reveal>
+          <Reveal delay={0.065} className="min-w-0">
+            <div className="type-body space-y-6 text-stone md:columns-2 md:gap-16">
+              {ministry.fullContent.split("\n\n").map((para, i) => (
+                <p key={i} className="break-inside-avoid">{para}</p>
+              ))}
             </div>
-          </div>
-          <div className="flex items-start gap-4 bg-mist rounded-2xl p-6">
-            <Clock size={22} className="text-meadow flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="eyebrow text-wheat mb-1">Meeting Time</p>
-              <p className="text-ink/80">{ministry.meetingTime || "See church calendar"}</p>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Full content */}
-        <Reveal delay={0.05} className="max-w-3xl">
-          {ministry.fullContent.split("\n\n").map((para, i) => (
-            <p key={i} className="text-ink/75 text-lg leading-relaxed mb-5">
-              {para}
-            </p>
-          ))}
-
-          <a
-            href={`mailto:${ministry.coordinatorEmail || "rueldelmonte4@gmail.com"}`}
-            className="mt-8 inline-flex items-center gap-2.5 bg-pasture text-canvas font-semibold py-3.5 px-7 rounded-full hover:bg-meadow transition-colors"
-          >
-            <Mail size={18} /> Contact the coordinator
-          </a>
-        </Reveal>
-      </div>
+            <Button
+              href={`mailto:${ministry.coordinatorEmail || "rueldelmonte4@gmail.com"}`}
+              className="mt-10"
+            >
+              <Mail size={18} aria-hidden="true" /> Contact the coordinator
+            </Button>
+          </Reveal>
+        </div>
+      </Section>
     </div>
   );
 };

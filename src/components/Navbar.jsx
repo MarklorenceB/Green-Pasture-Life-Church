@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import { NavLink, Link } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
 import logo from "../assets/logo.png";
+import Container from "./Container";
+import Button from "./Button";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -14,156 +15,81 @@ const navLinks = [
   { name: "Contact", path: "/contact" },
 ];
 
-const Navbar = () => {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  // Scrolling lives on #root (body is position:fixed), so listen there.
+  const nav = useRef(null);
+  const toggle = useRef(null);
   useEffect(() => {
     const root = document.getElementById("root");
-    if (!root) return;
     const onScroll = () => setScrolled(root.scrollTop > 24);
     onScroll();
     root.addEventListener("scroll", onScroll, { passive: true });
     return () => root.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const root = document.getElementById("root");
+    const oldOverflow = root.style.overflowY;
+    root.style.overflowY = "hidden";
+    const trigger = toggle.current;
+    // Keep the modal's logo, close control, and links available; isolate page content.
+    const siblings = [...nav.current.parentElement.children].filter((element) => element !== nav.current);
+    const oldInert = siblings.map((element) => element.inert);
+    siblings.forEach((element) => { element.inert = true; });
+    const menu = nav.current;
+    menu.querySelector(".mobile-menu__link")?.focus();
+    const onKey = (event) => {
+      if (event.key === "Escape") { event.preventDefault(); setIsOpen(false); }
+      if (event.key !== "Tab") return;
+      const items = [...menu.querySelectorAll('a[href], button:not([disabled])')].filter((element) => element.getClientRects().length);
+      const first = items[0];
+      const last = items.at(-1);
+      if (event.shiftKey && (document.activeElement === first || !menu.contains(document.activeElement))) {
+        event.preventDefault(); last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !menu.contains(document.activeElement))) {
+        event.preventDefault(); first.focus();
+      }
+    };
+    const desktop = window.matchMedia("(min-width: 1200px)");
+    const onResize = () => { if (desktop.matches) setIsOpen(false); };
+    document.addEventListener("keydown", onKey);
+    desktop.addEventListener("change", onResize);
+    return () => {
+      root.style.overflowY = oldOverflow;
+      siblings.forEach((element, index) => { element.inert = oldInert[index]; });
+      document.removeEventListener("keydown", onKey);
+      desktop.removeEventListener("change", onResize);
+      trigger?.focus({ preventScroll: true });
+    };
+  }, [isOpen]);
+
   const closeMenu = () => setIsOpen(false);
   const solid = scrolled || isOpen;
-
-  return (
-    <nav
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        solid
-          ? "bg-canvas/95 backdrop-blur-md shadow-[0_8px_30px_rgba(15,46,26,0.08)]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[72px] sm:h-20">
-          {/* Wordmark */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <img
-              src={logo}
-              alt=""
-              className="h-11 sm:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
-            />
-            <span
-              className={`hidden sm:block font-display leading-tight text-[15px] font-semibold tracking-tight transition-colors duration-300 ${
-                solid ? "text-pasture" : "text-canvas"
-              }`}
-            >
-              Green Pasture
-              <span
-                className={`block text-[11px] tracking-[0.2em] uppercase font-sans font-medium ${
-                  solid ? "text-stone" : "text-meadow-300/90"
-                }`}
-              >
-                Life Church
-              </span>
-            </span>
-          </Link>
-
-          {/* Desktop links */}
-          <div className="hidden lg:flex items-center gap-7">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.path}
-                end={link.path === "/"}
-                className={({ isActive }) =>
-                  `relative text-[15px] font-medium py-1 transition-colors duration-300 group ${
-                    solid
-                      ? isActive
-                        ? "text-pasture"
-                        : "text-ink/70 hover:text-pasture"
-                      : isActive
-                      ? "text-canvas"
-                      : "text-canvas/80 hover:text-canvas"
-                  }`
-                }
-              >
-                {({ isActive }) => (
-                  <>
-                    {link.name}
-                    <span
-                      className={`absolute -bottom-0.5 left-0 h-0.5 bg-wheat transition-transform duration-300 origin-left ${
-                        isActive ? "w-full scale-x-100" : "w-full scale-x-0 group-hover:scale-x-100"
-                      }`}
-                    />
-                  </>
-                )}
-              </NavLink>
-            ))}
-            <Link
-              to="/contact"
-              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 ${
-                solid
-                  ? "bg-pasture text-canvas hover:bg-meadow"
-                  : "bg-wheat text-moss hover:bg-canvas"
-              }`}
-            >
-              Plan Your Visit
-            </Link>
-          </div>
-
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setIsOpen((v) => !v)}
-            className={`lg:hidden p-2 rounded-full transition-colors ${
-              solid ? "text-pasture" : "text-canvas"
-            }`}
-            aria-expanded={isOpen}
-            aria-controls="mobile-menu"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={26} /> : <Menu size={26} />}
-          </button>
-        </div>
+  return <nav ref={nav} className="site-nav" data-solid={solid}
+    role={isOpen ? "dialog" : undefined} aria-modal={isOpen ? true : undefined} aria-label={isOpen ? "Main menu" : "Main navigation"}>
+    <Container className="nav-row">
+      <Link to="/" className="nav-brand" onClick={closeMenu}>
+        <img src={logo} alt="" className="nav-logo" />
+        <span className="nav-wordmark">Green Pasture<span>Life Church</span></span>
+      </Link>
+      <div className="nav-links">
+        {navLinks.map((link) => <NavLink key={link.path} to={link.path} end={link.path === "/"} className="nav-link">{link.name}</NavLink>)}
+        <Button to="/contact" variant={solid ? "primary" : "on-dark"}>Plan Your Visit</Button>
       </div>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden overflow-hidden bg-canvas border-t border-mist"
-          >
-            <div className="px-5 py-4 space-y-1">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.name}
-                  to={link.path}
-                  end={link.path === "/"}
-                  onClick={closeMenu}
-                  className={({ isActive }) =>
-                    `block px-3 py-3 rounded-lg text-base font-medium transition-colors ${
-                      isActive
-                        ? "bg-mist text-pasture"
-                        : "text-ink/80 hover:bg-mist/60"
-                    }`
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              ))}
-              <Link
-                to="/contact"
-                onClick={closeMenu}
-                className="block text-center mt-3 px-4 py-3 rounded-full font-semibold bg-pasture text-canvas hover:bg-meadow transition-colors"
-              >
-                Plan Your Visit
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
-};
-
-export default Navbar;
+      <button ref={toggle} className="menu-toggle" onClick={() => setIsOpen((open) => !open)}
+        aria-expanded={isOpen} aria-controls="mobile-menu" aria-label="Toggle menu">
+        {isOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
+      </button>
+    </Container>
+    {isOpen && <div id="mobile-menu" className="mobile-menu">
+      <Container className="mobile-menu__inner">
+        <div className="mobile-menu__links">
+          {navLinks.map((link) => <NavLink key={link.path} to={link.path} end={link.path === "/"} onClick={closeMenu} className="mobile-menu__link">{link.name}</NavLink>)}
+        </div>
+        <Button to="/contact" onClick={closeMenu}>Plan Your Visit</Button>
+      </Container>
+    </div>}
+  </nav>;
+}

@@ -1,34 +1,46 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { softTransition } from "../lib/motion";
 
-/**
- * Reveal — standard scroll-triggered fade-up used across the site.
- * Consolidates the repeated framer-motion variant patterns.
- * `as` lets it render any element; `delay`/`y` tune the entrance.
- * framer-motion's whileInView respects reduced motion via our CSS guard.
- */
-const Reveal = ({
-  children,
-  as = "div",
-  delay = 0,
-  y = 28,
-  className = "",
-  once = true,
-  ...rest
-}) => {
+/** Uses the actual root scroller, including in the full-page capture harness. */
+export default function Reveal({ children, as = "div", delay = 0, y = 12, className = "", once = true, ...rest }) {
+  const element = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const reduced = useReducedMotion();
+  useEffect(() => {
+    const root = document.getElementById("root");
+    let frame;
+    const reveal = () => {
+      setVisible(true);
+      if (once) {
+        observer.disconnect();
+        root?.removeEventListener("scroll", onScroll);
+      }
+    };
+    // A jump can skip the intersection entirely (non-intersecting both before
+    // and after). Check passed elements on the actual scroller as well.
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (element.current && element.current.getBoundingClientRect().top < (root?.getBoundingClientRect().top ?? 0)) reveal();
+      });
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting || entry.boundingClientRect.top < 0) reveal();
+      else if (!once) setVisible(false);
+    }, { root, threshold: 0, rootMargin: "0px 0px -24px 0px" });
+    if (element.current) observer.observe(element.current);
+    root?.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      observer.disconnect();
+      root?.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, [once]);
   const MotionTag = motion[as] || motion.div;
-  return (
-    <MotionTag
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: "-60px" }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }}
-      {...rest}
-    >
-      {children}
-    </MotionTag>
-  );
-};
-
-export default Reveal;
+  return <MotionTag ref={element} className={className}
+    initial={false}
+    animate={{ opacity: visible || reduced ? 1 : 0, y: visible || reduced ? 0 : y }}
+    transition={reduced ? { duration: 0 } : { ...softTransition, delay: Math.min(delay, 0.25) }}
+    {...rest}>{children}</MotionTag>;
+}

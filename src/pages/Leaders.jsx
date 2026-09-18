@@ -1,16 +1,13 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
-import { staggerContainer, staggerItem } from "../lib/motion";
+import Section from "../components/Section";
 import Eyebrow from "../components/Eyebrow";
+import Button from "../components/Button";
+import Portrait from "../components/Portrait";
 import zelyncuenca from "/worshipteam/zelyn.png";
 import pastorImg from "../assets/pastor.jpg";
 import heroBg from "../assets/fampic.jpg";
-
-/* ── Data ─────────────────────────────────────────────── */
 
 const coreLeaders = [
   { id: 1, name: "Pastor Ruel Del Monte", role: "Senior Pastor", image: pastorImg },
@@ -45,95 +42,34 @@ const initials = (name) =>
     .slice(0, 2)
     .join("");
 
-/* ── Core leader card ─────────────────────────────────── */
-
-const LeaderCard = ({ member }) => (
-  <motion.div variants={staggerItem} className="group">
-    <div className="bg-canvas rounded-3xl overflow-hidden border border-mist shadow-sm hover:shadow-xl transition-all duration-400 h-full">
-      <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-mist to-meadow-300/30">
-        {member.image ? (
-          <img
-            src={member.image}
-            alt={member.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <span className="font-display text-5xl text-pasture/40">
-              {initials(member.name)}
-            </span>
-          </div>
-        )}
-      </div>
-      <div className="p-5 text-center">
-        <h3 className="font-display text-lg text-pasture leading-snug mb-1">
-          {member.name}
-        </h3>
-        <span className="eyebrow text-wheat">{member.role}</span>
-      </div>
-    </div>
-  </motion.div>
+const MemberPortrait = ({ member, className = "", ...props }) => (
+  <Portrait
+    src={member.image}
+    name={member.name}
+    initials={initials(member.name)}
+    ratio="4 / 5"
+    position="center 25%"
+    className={`[&>img]:saturate-[.65] ${className}`}
+    {...props}
+  />
 );
 
-/* ── Board pyramid card ───────────────────────────────── */
-
-const PyramidCard = ({ member, isTop, custom }) => (
-  <motion.div
-    className="flex flex-col items-center"
-    variants={{
-      hidden: { opacity: 0, y: 30 },
-      show: (i = 0) => ({
-        opacity: 1,
-        y: 0,
-        transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
-      }),
-    }}
-    initial="hidden"
-    whileInView="show"
-    viewport={{ once: true }}
-    custom={custom}
-  >
-    <div
-      className={`relative overflow-hidden ${
-        isTop
-          ? "w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44"
-          : "w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36"
-      }`}
-      style={{
-        borderRadius: "0.75rem",
-        border: "3px solid var(--color-wheat)",
-        boxShadow: "0 0 18px rgba(200,162,75,0.18), 0 6px 24px rgba(0,0,0,0.25)",
-      }}
-    >
-      {member.image ? (
-        <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
-      ) : (
-        <div className="w-full h-full flex items-center justify-center bg-pasture">
-          <span className="font-display text-3xl text-wheat-300">
-            {initials(member.name)}
-          </span>
-        </div>
-      )}
-    </div>
-    <div className="mt-3 text-center">
-      <div
-        className="px-3.5 py-1 rounded inline-block"
-        style={{ background: "rgba(8,32,8,0.85)", border: "1px solid rgba(200,162,75,0.3)" }}
-      >
-        <h3 className="text-canvas font-semibold text-xs sm:text-sm tracking-wide uppercase leading-tight">
-          {member.name}
-        </h3>
-      </div>
-      <p className="mt-1.5 eyebrow text-wheat">{member.role}</p>
-    </div>
-  </motion.div>
+const DirectoryEntry = ({ member, ground = "mist" }) => (
+  <Reveal as="article" className="row-span-2 grid grid-cols-[3rem_minmax(0,1fr)] grid-rows-subgrid gap-x-5 gap-y-3 py-6">
+    <span className="eyebrow row-span-2 flex h-12 w-12 items-center justify-center rounded-full text-pasture" style={{ backgroundColor: `var(--color-${ground})` }}>
+      {initials(member.name)}
+    </span>
+    <h3 className="type-subheading text-pasture">{member.name}</h3>
+    <p className="eyebrow col-start-2 text-stone">{member.role}</p>
+  </Reveal>
 );
-
-/* ── Page ─────────────────────────────────────────────── */
 
 const Leaders = () => {
+  const pastor = coreLeaders[0];
+  const finance = coreLeaders[3];
+
   return (
-    <div className="bg-canvas">
+    <div className="bg-canvas md:[&_.page-hero>div>div:first-child]:self-end md:[&_.page-hero>div>div:first-child]:pb-0">
       <PageHero
         eyebrow="Our Leadership"
         title="Servants who shepherd"
@@ -141,110 +77,82 @@ const Leaders = () => {
         image={heroBg}
       />
 
-      {/* Core leaders */}
-      <section className="py-16 md:py-24 px-5 sm:px-8">
-        <div className="max-w-7xl mx-auto">
-          <Reveal className="text-center max-w-2xl mx-auto mb-14">
-            <Eyebrow align="center">Core Leaders</Eyebrow>
-            <h2 className="mt-4 font-display font-light text-pasture text-3xl sm:text-4xl md:text-5xl">
-              Guiding our church family
-            </h2>
-            <p className="mt-5 text-stone text-lg leading-relaxed">
+      <Section className="pb-12 md:pb-16">
+        <Reveal className="mb-12 md:mb-16">
+          <Eyebrow>Core Leaders</Eyebrow>
+          <h2 className="type-title mt-6 text-pasture">Guiding our church family</h2>
+        </Reveal>
+
+        <Reveal as="article" className="grid items-center gap-0 overflow-hidden rounded-[var(--radius-panel)] bg-mist md:grid-cols-[1.1fr_1fr] md:gap-12 md:p-12 lg:p-16">
+          <div className="order-2 p-6 pb-8 md:order-1 md:p-0">
+            <p className="eyebrow text-pasture">{pastor.role}</p>
+            <h3 className="type-heading mt-6 max-w-lg text-pasture">{pastor.name}</h3>
+            <p className="type-body mt-8 max-w-md text-stone">
               Providing guidance, support, and spiritual oversight — nurturing
               disciples and helping the church fulfill its mission of reaching
               people for Christ.
             </p>
+          </div>
+          <MemberPortrait member={pastor} position="center top" className="order-1 aspect-[4/3] md:order-2 md:aspect-[4/5]" />
+        </Reveal>
+
+        <div className="mt-12 grid gap-8 md:mt-16 md:grid-cols-[1fr_2fr] md:gap-16">
+          <Reveal as="article">
+            <MemberPortrait member={finance} position="center 15%" className="md:aspect-[4/3]" />
+            <h3 className="type-subheading mt-6 text-pasture">{finance.name}</h3>
+            <p className="eyebrow mt-3 text-stone">{finance.role}</p>
           </Reveal>
-
-          <motion.div
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-7"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {coreLeaders.map((member) => (
-              <LeaderCard key={member.id} member={member} />
+          <div className="grid content-start gap-x-12 md:grid-cols-2">
+            {coreLeaders.filter((member) => !member.image).map((member) => (
+              <DirectoryEntry key={member.id} member={member} />
             ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Board of Trustees */}
-      <section
-        className="relative overflow-hidden py-16 md:py-24 px-5 sm:px-6"
-        style={{
-          background:
-            "linear-gradient(175deg, #0f3d0f 0%, #174a17 25%, #1e4d2b 50%, #174a17 80%, #0b2d0b 100%)",
-        }}
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 15% 20%, rgba(200,162,75,0.1) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 85% 80%, rgba(106,168,79,0.12) 0%, transparent 70%)",
-          }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-14 md:mb-16"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div
-              className="inline-block px-8 sm:px-12 py-3 rounded-md"
-              style={{
-                background:
-                  "linear-gradient(135deg, #c8a24b 0%, #e0c581 45%, #c8a24b 75%, #b89740 100%)",
-                boxShadow: "0 3px 16px rgba(200,162,75,0.25), inset 0 1px 0 rgba(255,255,255,0.25)",
-              }}
-            >
-              <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-semibold text-pasture tracking-wide uppercase">
-                Board of Trustees
-              </h2>
-            </div>
-            <p className="mt-4 text-canvas/55 text-xs tracking-[0.2em] uppercase">
-              SEC Registered #2024050148957-08
-            </p>
-          </motion.div>
-
-          <div className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12">
-            <div className="flex justify-center">
-              <PyramidCard member={boardOfTrustees.top} isTop custom={0} />
-            </div>
-            <div className="flex flex-wrap justify-center gap-6 sm:gap-10 md:gap-16 lg:gap-24">
-              {boardOfTrustees.middle.map((member, i) => (
-                <PyramidCard key={member.id} member={member} isTop={false} custom={i + 1} />
-              ))}
-            </div>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-              {boardOfTrustees.bottom.map((member, i) => (
-                <PyramidCard key={member.id} member={member} isTop={false} custom={i + 3} />
-              ))}
-            </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Closing CTA */}
-      <section className="py-16 md:py-20 px-5 sm:px-8 bg-mist">
-        <Reveal className="max-w-2xl mx-auto text-center">
-          <p className="text-lg text-ink/75 leading-relaxed mb-7">
+      <Section compact className="bg-mist md:pb-0">
+        <Reveal className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <h2 className="type-heading max-w-2xl text-pasture">Board of Trustees</h2>
+          <p className="eyebrow text-stone">SEC Registered #2024050148957-08</p>
+        </Reveal>
+        <div className="grid gap-12 md:grid-cols-3 md:gap-8">
+          {[boardOfTrustees.top, ...boardOfTrustees.middle].map((member) => (
+            <Reveal key={member.id} as="article" className="grid grid-cols-[7rem_1fr] items-center gap-6 md:block">
+              {member.id === boardOfTrustees.top.id ? (
+                <div className="rounded-[var(--radius-panel)] bg-canvas p-2 md:p-3">
+                  <MemberPortrait member={member} ground="canvas" ratio="1 / 1"
+                    className="rounded-[calc(var(--radius-panel)-.75rem)] max-md:[&>img]:origin-[50%_15%] max-md:[&>img]:scale-150" />
+                </div>
+              ) : (
+                <MemberPortrait member={member} ground="canvas" ratio="1 / 1"
+                  className="p-2 md:p-3 [&>img]:rounded-[calc(var(--radius-panel)-.75rem)] [&>span]:text-[clamp(3rem,10vw,9rem)] [&>span]:font-bold [&>span]:tracking-[-.055em]" />
+              )}
+              <div className="md:mt-6">
+                <h3 className="type-subheading text-pasture">{member.name}</h3>
+                <p className="eyebrow mt-3 text-stone">{member.role}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-8 grid gap-x-12 md:mt-12 md:grid-cols-2">
+          {boardOfTrustees.bottom.map((member) => (
+            <DirectoryEntry key={member.id} member={member} ground="canvas" />
+          ))}
+        </div>
+      </Section>
+
+      <Section compact>
+        <Reveal className="grid items-center gap-8">
+          <p className="type-body max-w-2xl text-stone">
             Through prayer, biblical leadership, and a passion for ministry, our
             leaders equip believers, strengthen families, and help build a strong
             spiritual community that brings glory to God.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-pasture text-canvas font-semibold py-3.5 px-7 rounded-full hover:bg-meadow transition-colors"
-          >
-            Get in touch <ArrowRight size={18} />
-          </Link>
+          <Button to="/contact" className="justify-self-start">
+            Get in touch <ArrowRight size={18} aria-hidden="true" />
+          </Button>
         </Reveal>
-      </section>
+      </Section>
     </div>
   );
 };

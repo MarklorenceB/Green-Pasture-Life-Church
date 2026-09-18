@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# gauntlet tooling
+.playwright-mcp/
+gauntlet/dev.log
+gauntlet/rounds/*.log

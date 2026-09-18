@@ -21,7 +21,7 @@ const ScrollToTop = () => {
   useEffect(() => {
     // Scrolling lives on #root (body is position:fixed), so reset that.
     const root = document.getElementById("root");
-    if (root) root.scrollTop = 0;
+    if (root) root.scrollTo({ top: 0, behavior: "instant" });
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
